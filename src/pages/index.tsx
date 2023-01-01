@@ -7,6 +7,7 @@ import Question from "components/organizms/top/Question";
 import Links from "components/organizms/top/Links";
 import FeatureiNAZO from "components/organizms/top/FeatureiNAZO";
 import DescribeiNAZO from "components/organizms/top/DescribeiNAZO";
+import Header from "components/organizms/Header";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <title>ホームページ</title>
       </Head>
       <Box sx={{ flexGrow: 1 }}>
+        <Header />
         <Grid container>
           <DescribeiNAZO />
           <FeatureiNAZO />
