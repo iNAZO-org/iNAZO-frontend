@@ -3,11 +3,12 @@ import Box from "@mui/material/Box";
 import Head from "next/head";
 import { Grid } from "@mui/material";
 
-import Question from "components/organizms/top/Question";
-import Links from "components/organizms/top/Links";
-import FeatureiNAZO from "components/organizms/top/FeatureiNAZO";
-import DescribeiNAZO from "components/organizms/top/DescribeiNAZO";
-import Header from "components/organizms/Header";
+import Question from "components/organisms/top/Question";
+import Links from "components/organisms/top/Links";
+import FeatureiNAZO from "components/organisms/top/FeatureiNAZO";
+import DescribeiNAZO from "components/organisms/top/DescribeiNAZO";
+import Header from "components/organisms/Header";
+import BasicLayout from "components/templates/BasicLayout";
 
 const App = () => {
   return (
@@ -15,15 +16,12 @@ const App = () => {
       <Head>
         <title>ホームページ</title>
       </Head>
-      <Box sx={{ flexGrow: 1 }}>
-        <Header />
-        <Grid container>
-          <DescribeiNAZO />
-          <FeatureiNAZO />
-          <Question />
-          <Links />
-        </Grid>
-      </Box>
+      <BasicLayout>
+        <DescribeiNAZO />
+        <FeatureiNAZO />
+        <Question />
+        <Links />
+      </BasicLayout>
     </div>
   );
 };
