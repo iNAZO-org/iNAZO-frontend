@@ -6,10 +6,21 @@ type DescribeiNAZOProps = {};
 const DescribeiNAZO: FC<DescribeiNAZOProps> = () => {
   return (
     <Grid item>
-      <Typography>
-        <Typography component="span">iNAZO</Typography>とは？
+      <Typography align="center" variant="h3" sx={{ m: "5rem 0" }}>
+        <Typography
+          component="span"
+          variant="h2"
+          sx={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            color: "primary.main",
+          }}
+        >
+          iNAZO
+        </Typography>
+        とは？
       </Typography>
-      <Typography className="text-h6 text-center">
+      <Typography variant="h6" align="center">
         北大が公開している成績分布データをより扱いやすくしました。
         <br />
         <br />
