@@ -1,7 +1,9 @@
-import { FC } from "react";
-import { Typography, Grid, Box, Link } from "@mui/material";
+import { Typography, Grid, Box, Link } from '@mui/material'
+import { FC } from 'react'
 
-type QuestionProps = {};
+import { BaseProps } from 'types'
+
+type QuestionProps = BaseProps
 
 const Question: FC<QuestionProps> = () => {
   return (
@@ -56,7 +58,7 @@ const Question: FC<QuestionProps> = () => {
         </Box>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

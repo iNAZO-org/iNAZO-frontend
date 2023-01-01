@@ -1,7 +1,9 @@
-import { Typography, Grid, Link } from "@mui/material";
-import { FC } from "react";
+import { Typography, Grid, Link } from '@mui/material'
+import { FC } from 'react'
 
-type LinksProps = {};
+import { BaseProps } from 'types'
+
+type LinksProps = BaseProps
 
 const Links: FC<LinksProps> = () => {
   return (
@@ -57,7 +59,7 @@ const Links: FC<LinksProps> = () => {
         </Typography>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default Links;
+export default Links

@@ -1,19 +1,21 @@
-import { Grid, Typography } from "@mui/material";
-import { FC } from "react";
+import { Grid, Typography } from '@mui/material'
+import { FC } from 'react'
 
-type DescribeiNAZOProps = {};
+import { BaseProps } from 'types'
+
+type DescribeiNAZOProps = BaseProps
 
 const DescribeiNAZO: FC<DescribeiNAZOProps> = () => {
   return (
     <Grid item>
-      <Typography align="center" variant="h3" sx={{ m: "5rem 0" }}>
+      <Typography align="center" variant="h3" sx={{ m: '5rem 0' }}>
         <Typography
           component="span"
           variant="h2"
           sx={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            color: "primary.main",
+            fontWeight: 'bold',
+            textDecoration: 'underline',
+            color: 'primary.main',
           }}
         >
           iNAZO
@@ -32,7 +34,7 @@ const DescribeiNAZO: FC<DescribeiNAZOProps> = () => {
         iNAZOを使って取りたい成績をあなたのものにしよう。 <br />
       </Typography>
     </Grid>
-  );
-};
+  )
+}
 
-export default DescribeiNAZO;
+export default DescribeiNAZO

@@ -1,7 +1,9 @@
-import { Card, Typography, Grid } from "@mui/material";
-import { FC } from "react";
+import { Card, Typography, Grid } from '@mui/material'
+import { FC } from 'react'
 
-type FeatureiNAZOProps = {};
+import { BaseProps } from 'types'
+
+type FeatureiNAZOProps = BaseProps
 
 const FeatureiNAZO: FC<FeatureiNAZOProps> = () => {
   return (
@@ -16,7 +18,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = () => {
         </Card>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default FeatureiNAZO;
+export default FeatureiNAZO

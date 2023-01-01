@@ -1,14 +1,14 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Head from "next/head";
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material'
+import Box from '@mui/material/Box'
+import Head from 'next/head'
+import * as React from 'react'
 
-import Question from "components/organisms/top/Question";
-import Links from "components/organisms/top/Links";
-import FeatureiNAZO from "components/organisms/top/FeatureiNAZO";
-import DescribeiNAZO from "components/organisms/top/DescribeiNAZO";
-import Header from "components/organisms/Header";
-import BasicLayout from "components/templates/BasicLayout";
+import Header from 'components/organisms/Header'
+import DescribeiNAZO from 'components/organisms/top/DescribeiNAZO'
+import FeatureiNAZO from 'components/organisms/top/FeatureiNAZO'
+import Links from 'components/organisms/top/Links'
+import Question from 'components/organisms/top/Question'
+import BasicLayout from 'components/templates/BasicLayout'
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
         <Links />
       </BasicLayout>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

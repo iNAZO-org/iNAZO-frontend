@@ -1,20 +1,19 @@
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material'
 
-import Header from "components/organisms/Header";
+import Header from 'components/organisms/Header'
+import { BaseProps } from 'types'
 
-type BasicLayoutProps = {
-  children: React.ReactNode;
-};
+type BasicLayoutProps = BaseProps & {
+  children: React.ReactNode
+}
 
-const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
-  const { children } = props;
-
+const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: '100%' }}>
       <Header />
-      <Grid sx={{ marginTop: "4rem", p: "0 0.5rem" }}>{children}</Grid>
+      <Grid sx={{ marginTop: '4rem', p: '0 0.5rem' }}>{children}</Grid>
     </div>
-  );
-};
+  )
+}
 
-export default BasicLayout;
+export default BasicLayout
