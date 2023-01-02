@@ -1,79 +1,79 @@
-import { Typography, Grid, Box, Link } from '@mui/material'
-import { FC, ReactNode } from 'react'
+import { Typography, Grid, Box, Link } from "@mui/material";
+import { FC, ReactNode } from "react";
 
-import { BaseProps } from 'types'
+import { BaseProps } from "types";
 
 type QuestionRowProps = BaseProps & {
-  variant?: 'question' | 'answer'
-  children?: ReactNode
-}
+  variant?: "question" | "answer";
+  children?: ReactNode;
+};
 
 const QuestionRow: FC<QuestionRowProps> = ({
-  variant = 'question',
+  variant = "question",
   children,
 }) => {
   const commonStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    fontWeight: 'bold',
-    mb: '1rem',
-    '&::before': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '50px',
-      height: '50px',
-      mr: '2rem',
+    display: "flex",
+    alignItems: "center",
+    fontWeight: "bold",
+    mb: "1rem",
+    "&::before": {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "50px",
+      height: "50px",
+      mr: "2rem",
     },
-  }
+  };
   const questionStyle = {
     ...commonStyle,
-    '&::before': {
-      ...commonStyle['&::before'],
+    "&::before": {
+      ...commonStyle["&::before"],
       content: '"Q"',
-      background: '#D65556',
-      color: '#fff',
+      background: "#D65556",
+      color: "#fff",
     },
-  }
+  };
   const answerStyle = {
     ...commonStyle,
-    '&::before': {
-      ...commonStyle['&::before'],
+    "&::before": {
+      ...commonStyle["&::before"],
       content: '"A"',
-      background: '#2196f3',
-      color: '#fff',
+      background: "#2196f3",
+      color: "#fff",
     },
-  }
+  };
   return (
     <Typography
       variant="subtitle1"
-      sx={variant === 'question' ? questionStyle : answerStyle}
+      sx={variant === "question" ? questionStyle : answerStyle}
     >
       {children}
     </Typography>
-  )
-}
+  );
+};
 
-type QuestionProps = BaseProps
+type QuestionProps = BaseProps;
 
 const Question: FC<QuestionProps> = () => {
   return (
     <Box
       sx={{
-        background: '#eeeeee',
-        p: '5rem',
-        my: '5rem',
-        borderRadius: '1rem',
+        background: "#eeeeee",
+        p: "5rem",
+        my: "5rem",
+        borderRadius: "1rem",
       }}
     >
-      <Typography variant="h3" align="center" sx={{ mb: '4rem' }}>
+      <Typography variant="h3" align="center" sx={{ mb: "4rem" }}>
         Q&A
       </Typography>
 
-      <Box sx={{ mb: '3rem' }}>
+      <Box sx={{ mb: "3rem" }}>
         <QuestionRow>誰が作っているのですか？</QuestionRow>
         <QuestionRow variant="answer">
-          A. 北大生応援メディアの
+          北大生応援メディアの
           <Link
             href="https://hu-jagajaga.com/"
             target="_blank"
@@ -85,10 +85,10 @@ const Question: FC<QuestionProps> = () => {
         </QuestionRow>
       </Box>
 
-      <Box sx={{ mb: '3rem' }}>
-        <QuestionRow>Q. このサービスは大学公認ですか？</QuestionRow>
+      <Box sx={{ mb: "3rem" }}>
+        <QuestionRow>このサービスは大学公認ですか？</QuestionRow>
         <QuestionRow variant="answer">
-          A. 非公認です。
+          非公認です。
           <Link
             href="http://educate.academic.hokudai.ac.jp/seiseki/GradeDistSerch.aspx"
             target="_blank"
@@ -100,10 +100,10 @@ const Question: FC<QuestionProps> = () => {
         </QuestionRow>
       </Box>
 
-      <Box sx={{ mb: '3rem' }}>
-        <QuestionRow>Q. バグを見つけました。どうすればいいですか？</QuestionRow>
+      <Box sx={{ mb: "3rem" }}>
+        <QuestionRow>バグを見つけました。どうすればいいですか？</QuestionRow>
         <QuestionRow variant="answer">
-          A. 見つけたバグを
+          見つけたバグを
           <Link
             href="https://forms.gle/tLRiKrShckWsiuXs9"
             target="_blank"
@@ -116,7 +116,7 @@ const Question: FC<QuestionProps> = () => {
         </QuestionRow>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Question
+export default Question;
