@@ -7,8 +7,8 @@ type DescribeiNAZOProps = BaseProps
 
 const DescribeiNAZO: FC<DescribeiNAZOProps> = () => {
   return (
-    <Grid item>
-      <Typography align="center" variant="h3" sx={{ m: '5rem 0' }}>
+    <Grid item sx={{ m: '5rem 0' }}>
+      <Typography align="center" variant="h3">
         <Typography
           component="span"
           variant="h2"

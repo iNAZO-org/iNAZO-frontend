@@ -11,7 +11,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
   return (
     <div style={{ height: '100%' }}>
       <Header />
-      <Grid sx={{ marginTop: '4rem', p: '0 0.5rem' }}>{children}</Grid>
+      <Grid sx={{ marginTop: '4rem', p: '0 10rem' }}>{children}</Grid>
     </div>
   )
 }

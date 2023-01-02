@@ -1,21 +1,64 @@
-import { Card, Typography, Grid } from '@mui/material'
+import { Typography, Grid } from '@mui/material'
 import { FC } from 'react'
 
+import FeatureCard from 'components/molecules/FeatureCard'
 import { BaseProps } from 'types'
 
 type FeatureiNAZOProps = BaseProps
 
 const FeatureiNAZO: FC<FeatureiNAZOProps> = () => {
   return (
-    <Grid container>
-      <Grid item>
-        <Card>
-          <Typography>ブックマーク登録</Typography>
-          <Typography>
-            気になる講義を登録してあなただけの一覧を
-            <br />
-          </Typography>
-        </Card>
+    <Grid item sx={{ m: '5rem 0' }}>
+      <Typography align="center" variant="h3" sx={{ m: '5rem 0' }}>
+        <Typography
+          component="span"
+          variant="h2"
+          sx={{
+            fontWeight: 'bold',
+            textDecoration: 'underline',
+            color: 'primary.main',
+          }}
+        >
+          iNAZO
+        </Typography>
+        の特徴？
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
+          <FeatureCard
+            title="シェア機能"
+            imgSrc="/share_top.png"
+            alt="share image"
+          >
+            <Typography variant="body1">
+              ボタン1つで気になる講義をグラフで共有
+            </Typography>
+          </FeatureCard>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FeatureCard
+            title="ブックマーク登録"
+            imgSrc="/share_top.png"
+            alt="share image"
+          >
+            <Typography variant="body1">
+              気になる講義を登録してあなただけの一覧を
+            </Typography>
+          </FeatureCard>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FeatureCard
+            title="ソート検索"
+            imgSrc="/share_top.png"
+            alt="share image"
+          >
+            <Typography variant="body1">
+              表示順を変えることで知りたい情報を探しやすく
+            </Typography>
+          </FeatureCard>
+        </Grid>
       </Grid>
     </Grid>
   )
