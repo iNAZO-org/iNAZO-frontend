@@ -1,18 +1,78 @@
-import { Typography, Grid, Box, Link } from "@mui/material";
-import { FC } from "react";
+import { Typography, Grid, Box, Link } from '@mui/material'
+import { FC, ReactNode } from 'react'
 
-import { BaseProps } from "types";
+import { BaseProps } from 'types'
 
-type QuestionProps = BaseProps;
+type QuestionRowProps = BaseProps & {
+  variant?: 'question' | 'answer'
+  children?: ReactNode
+}
+
+const QuestionRow: FC<QuestionRowProps> = ({
+  variant = 'question',
+  children,
+}) => {
+  const commonStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    mb: '1rem',
+    '&::before': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '50px',
+      height: '50px',
+      mr: '2rem',
+    },
+  }
+  const questionStyle = {
+    ...commonStyle,
+    '&::before': {
+      ...commonStyle['&::before'],
+      content: '"Q"',
+      background: '#D65556',
+      color: '#fff',
+    },
+  }
+  const answerStyle = {
+    ...commonStyle,
+    '&::before': {
+      ...commonStyle['&::before'],
+      content: '"A"',
+      background: '#2196f3',
+      color: '#fff',
+    },
+  }
+  return (
+    <Typography
+      variant="subtitle1"
+      sx={variant === 'question' ? questionStyle : answerStyle}
+    >
+      {children}
+    </Typography>
+  )
+}
+
+type QuestionProps = BaseProps
 
 const Question: FC<QuestionProps> = () => {
   return (
-    <Box>
-      <Typography>Q&A</Typography>
+    <Box
+      sx={{
+        background: '#eeeeee',
+        p: '5rem',
+        my: '5rem',
+        borderRadius: '1rem',
+      }}
+    >
+      <Typography variant="h3" align="center" sx={{ mb: '4rem' }}>
+        Q&A
+      </Typography>
 
-      <Box>
-        <Typography>Q. 誰が作っているのですか？</Typography>
-        <Typography>
+      <Box sx={{ mb: '3rem' }}>
+        <QuestionRow>誰が作っているのですか？</QuestionRow>
+        <QuestionRow variant="answer">
           A. 北大生応援メディアの
           <Link
             href="https://hu-jagajaga.com/"
@@ -22,12 +82,12 @@ const Question: FC<QuestionProps> = () => {
             JagaJaga
           </Link>
           が開発・運用しています。
-        </Typography>
+        </QuestionRow>
       </Box>
 
-      <Box>
-        <Typography>Q. このサービスは大学公認ですか？</Typography>
-        <Typography>
+      <Box sx={{ mb: '3rem' }}>
+        <QuestionRow>Q. このサービスは大学公認ですか？</QuestionRow>
+        <QuestionRow variant="answer">
           A. 非公認です。
           <Link
             href="http://educate.academic.hokudai.ac.jp/seiseki/GradeDistSerch.aspx"
@@ -37,12 +97,12 @@ const Question: FC<QuestionProps> = () => {
             データ参照先
           </Link>
           の併用をお勧めします。
-        </Typography>
+        </QuestionRow>
       </Box>
 
-      <Box>
-        <Typography>Q. バグを見つけました。どうすればいいですか？</Typography>
-        <Typography>
+      <Box sx={{ mb: '3rem' }}>
+        <QuestionRow>Q. バグを見つけました。どうすればいいですか？</QuestionRow>
+        <QuestionRow variant="answer">
           A. 見つけたバグを
           <Link
             href="https://forms.gle/tLRiKrShckWsiuXs9"
@@ -53,10 +113,10 @@ const Question: FC<QuestionProps> = () => {
           </Link>
           のGoogle Formで教えて下さると幸いです。
           機能追加等の要望もお待ちしています。
-        </Typography>
+        </QuestionRow>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

@@ -1,26 +1,26 @@
-import { Box, Typography } from "@mui/material";
-import { FC } from "react";
+import { Box, Typography } from '@mui/material'
+import { FC } from 'react'
 
-import { BaseProps } from "types";
+import { BaseProps } from 'types'
 
-type DescribeiNAZOProps = BaseProps;
+type DescribeiNAZOProps = BaseProps
 
 const DescribeiNAZO: FC<DescribeiNAZOProps> = ({ sx }) => {
   return (
     <Box sx={sx}>
-      <Typography align="center" variant="h3" sx={{ mb: "2rem" }}>
+      <Typography align="center" variant="h3" sx={{ mb: '2rem' }}>
         <Typography
           component="span"
           variant="h2"
           sx={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            color: "primary.main",
+            fontWeight: 'bold',
+            textDecoration: 'underline',
+            color: 'primary.main',
           }}
         >
           iNAZO
         </Typography>
-        とは？
+        とは
       </Typography>
       <Typography variant="h6" align="center">
         北大が公開している成績分布データをより扱いやすくしました。
@@ -34,7 +34,7 @@ const DescribeiNAZO: FC<DescribeiNAZOProps> = ({ sx }) => {
         iNAZOを使って取りたい成績をあなたのものにしよう。 <br />
       </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default DescribeiNAZO;
+export default DescribeiNAZO

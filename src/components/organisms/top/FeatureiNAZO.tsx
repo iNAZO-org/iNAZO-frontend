@@ -1,27 +1,27 @@
-import { Typography, Grid, Box } from "@mui/material";
-import { FC } from "react";
+import { Typography, Grid, Box } from '@mui/material'
+import { FC } from 'react'
 
-import FeatureCard from "components/molecules/FeatureCard";
-import { BaseProps } from "types";
+import FeatureCard from 'components/molecules/FeatureCard'
+import { BaseProps } from 'types'
 
-type FeatureiNAZOProps = BaseProps;
+type FeatureiNAZOProps = BaseProps
 
 const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
   return (
     <Box sx={sx}>
-      <Typography align="center" variant="h3" sx={{ mb: "2rem" }}>
+      <Typography align="center" variant="h3" sx={{ mb: '2rem' }}>
         <Typography
           component="span"
           variant="h2"
           sx={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            color: "primary.main",
+            fontWeight: 'bold',
+            textDecoration: 'underline',
+            color: 'primary.main',
           }}
         >
           iNAZO
         </Typography>
-        の特徴？
+        の特徴
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={4}>
@@ -61,7 +61,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default FeatureiNAZO;
+export default FeatureiNAZO

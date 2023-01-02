@@ -1,9 +1,9 @@
-import { Typography, Box, Link } from "@mui/material";
-import { FC } from "react";
+import { Typography, Box, Link } from '@mui/material'
+import { FC } from 'react'
 
-import { BaseProps } from "types";
+import { BaseProps } from 'types'
 
-type LinksProps = BaseProps;
+type LinksProps = BaseProps
 
 const Links: FC<LinksProps> = () => {
   return (
@@ -57,7 +57,7 @@ const Links: FC<LinksProps> = () => {
         データ参照先である北海道大学公式のサイトです。本サービスとの併用をお勧めします。
       </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default Links;
+export default Links
