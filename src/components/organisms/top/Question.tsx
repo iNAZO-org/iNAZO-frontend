@@ -66,7 +66,12 @@ const Question: FC<QuestionProps> = () => {
         borderRadius: '1rem',
       }}
     >
-      <Typography variant="h3" align="center" sx={{ mb: '4rem' }}>
+      <Typography
+        variant="h3"
+        align="center"
+        fontWeight="bold"
+        sx={{ mb: '4rem' }}
+      >
         Q&A
       </Typography>
 
