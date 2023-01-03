@@ -1,13 +1,15 @@
 import { Grid } from '@mui/material'
 import Head from 'next/head'
-import * as React from 'react'
+import { useState } from 'react'
 
-import GradeDistributionGraph from 'components/atoms/GradeDistributionGraph'
+import Pagination from 'components/atoms/Pagination'
 import GradeDistributionCard from 'components/molecules/GradeDistributionCard'
 import BasicLayout from 'components/templates/BasicLayout'
 import { GradeDistribution } from 'types'
 
 const Search = () => {
+  const [page, setPage] = useState(1)
+
   const gradeData: GradeDistribution = {
     id: 1,
     subject: 'test',
@@ -41,6 +43,14 @@ const Search = () => {
         <title>成績検索</title>
       </Head>
       <BasicLayout>
+        <Pagination
+          count={10}
+          page={page}
+          onChange={(nextPage) => {
+            setPage(nextPage)
+          }}
+        />
+
         <Grid container spacing={4}>
           {gradeDataList.map((gradeData) => {
             return (
@@ -50,6 +60,14 @@ const Search = () => {
             )
           })}
         </Grid>
+
+        <Pagination
+          count={10}
+          page={page}
+          onChange={(nextPage) => {
+            setPage(nextPage)
+          }}
+        />
       </BasicLayout>
     </>
   )
