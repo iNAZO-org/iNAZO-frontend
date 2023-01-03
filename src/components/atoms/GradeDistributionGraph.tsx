@@ -10,7 +10,7 @@ type GradeDistributionGraphProps = {
 const labels = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'D', 'D-', 'F']
 const options = {
   responsive: true,
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   scales: {
     y: {
       beginAtZero: true,
@@ -53,7 +53,7 @@ const GradeDistributionGraph: FC<GradeDistributionGraphProps> = ({ data }) => {
       },
     ],
   }
-  return <Bar options={options} data={gradeData} height="600" />
+  return <Bar options={options} data={gradeData} height="200" />
 }
 
 export default GradeDistributionGraph
