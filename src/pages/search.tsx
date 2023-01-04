@@ -20,12 +20,10 @@ const Search = () => {
   const [page, setPage] = useState(1)
   const [selectSortValue, setSelectSortValue] = useState('latest')
   const { gradeDistributionWithPagination, isLoading, isError } =
-    useSearchGradeDistribution()
+    useSearchGradeDistribution({ page })
 
   if (isError) throw new Error('error')
   if (isLoading || !gradeDistributionWithPagination) return <p>Loading</p>
-
-  console.log(gradeDistributionWithPagination)
 
   return (
     <>
@@ -34,7 +32,7 @@ const Search = () => {
       </Head>
       <BasicLayout>
         <Pagination
-          count={10}
+          count={gradeDistributionWithPagination.totalPages}
           page={page}
           onChange={(nextPage) => {
             setPage(nextPage)
@@ -95,7 +93,7 @@ const Search = () => {
         </Grid>
 
         <Pagination
-          count={10}
+          count={gradeDistributionWithPagination.totalPages}
           page={page}
           onChange={(nextPage) => {
             setPage(nextPage)

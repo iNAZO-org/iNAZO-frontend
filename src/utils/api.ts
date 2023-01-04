@@ -1,13 +1,35 @@
+import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives/url'
 import useSWR from 'swr'
 import { APIResponse, GradeDistributionWithPagination } from 'types'
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
+type SearchGradeDistributionQuery = {
+  page?: number
+  limit?: number
+  sort?: string
+}
 
-export const useSearchGradeDistribution = () => {
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
+const baseURL = 'http://localhost:8000'
+
+export const useSearchGradeDistribution = (
+  query: SearchGradeDistributionQuery,
+) => {
+  let endPoint = baseURL + '/api/grade_distribution?'
+  // 0、空白の場合もクエリから除外する
+  if (query.page) {
+    endPoint += `page=${query.page}&`
+  }
+  if (query.limit) {
+    endPoint += `limit=${query.limit}&`
+  }
+  if (query.sort) {
+    endPoint += `sort=${query.sort}&`
+  }
+
   const { data, error, isLoading } = useSWR<
     APIResponse<GradeDistributionWithPagination>,
     Error
-  >('http://localhost:8000/api/grade_distribution', fetcher)
+  >(endPoint, fetcher)
 
   return {
     gradeDistributionWithPagination: data?.result,
