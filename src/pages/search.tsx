@@ -14,39 +14,19 @@ import { useState } from 'react'
 import Pagination from 'components/atoms/Pagination'
 import GradeDistributionCard from 'components/molecules/GradeDistributionCard'
 import BasicLayout from 'components/templates/BasicLayout'
-import { GradeDistribution } from 'types'
+import { useSearchGradeDistribution } from 'utils/api'
 
 const Search = () => {
   const [page, setPage] = useState(1)
   const [selectSortValue, setSelectSortValue] = useState('latest')
+  const { gradeDistributionWithPagination, isLoading, isError } =
+    useSearchGradeDistribution()
 
-  const gradeData: GradeDistribution = {
-    id: 1,
-    subject: 'test',
-    subTitle: 'string',
-    class: 'string',
-    teacher: 'string',
-    year: 2022,
-    semester: 1,
-    faculty: 'string',
-    studentCount: 20,
-    gpa: 3,
+  if (isError) throw new Error('error')
+  if (isLoading || !gradeDistributionWithPagination) return <p>Loading</p>
 
-    apCount: 1,
-    aCount: 2,
-    amCount: 3,
-    bpCount: 4,
-    bCount: 5,
-    bmCount: 6,
-    cpCount: 7,
-    cCount: 8,
-    dCount: 9,
-    dmCount: 10,
-    fCount: 11,
-  }
-  const gradeDataList = new Array(10)
-    .fill(0)
-    .map((_, i) => ({ ...gradeData, id: i }))
+  console.log(gradeDistributionWithPagination)
+
   return (
     <>
       <Head>
@@ -105,7 +85,7 @@ const Search = () => {
         </Grid>
 
         <Grid container spacing={4}>
-          {gradeDataList.map((gradeData) => {
+          {gradeDistributionWithPagination.rows.map((gradeData) => {
             return (
               <Grid key={gradeData.id} item xs={6}>
                 <GradeDistributionCard gradeDistribution={gradeData} />

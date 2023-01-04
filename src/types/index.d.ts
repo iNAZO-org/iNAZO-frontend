@@ -1,10 +1,10 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
-type BaseProps = {
+export type BaseProps = {
   sx?: SxProps<Theme>
 }
 
-type GradeDistributionGraphData = {
+export type GradeDistributionGraphData = {
   apCount: number
   aCount: number
   amCount: number
@@ -18,8 +18,9 @@ type GradeDistributionGraphData = {
   fCount: number
 }
 
-type GradeDistribution = {
+export type GradeDistribution = {
   id: number
+
   subject: string
   subTitle: string
   class: string
@@ -41,4 +42,19 @@ type GradeDistribution = {
   dCount: number
   dmCount: number
   fCount: number
+}
+
+export type GradeDistributionWithPagination = {
+  limit: number
+  page: number
+  sort: string
+  totalRows: number
+  totalPages: number
+  rows: GradeDistribution[]
+}
+
+export type APIResponse<T> = {
+  message: string
+  status: number
+  result: T
 }

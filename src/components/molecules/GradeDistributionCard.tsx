@@ -29,7 +29,7 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
     <Card>
       <CardContent>
         <Typography variant="h5" fontWeight="bold" sx={{ mb: '0.5rem' }}>
-          {gradeDistribution.subject}
+          {gradeDistribution.subject} {gradeDistribution.subTitle}
         </Typography>
         <Typography sx={{ mb: '0.5rem' }}>
           {gradeDistribution.year}年度 {gradeDistribution.semester}学期
