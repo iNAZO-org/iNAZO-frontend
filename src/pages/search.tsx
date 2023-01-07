@@ -9,18 +9,32 @@ import {
   FormControl,
 } from '@mui/material'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Pagination from 'components/atoms/Pagination'
 import GradeDistributionCard from 'components/molecules/GradeDistributionCard'
 import BasicLayout from 'components/templates/BasicLayout'
 import { useSearchGradeDistribution } from 'utils/api'
+import { useRouter } from 'next/router'
 
 const Search = () => {
-  const [page, setPage] = useState(1)
-  const [selectSortValue, setSelectSortValue] = useState('latest')
+  const router = useRouter()
+
+  const pageQuery = Number(router.query.page || '1')
+  const sortValueQuery = String(router.query.sort || 'latest')
+  const searchQuery = String(router.query.search || '')
+
+  const [page, setPage] = useState(pageQuery)
+  const [selectSortValue, setSelectSortValue] = useState(sortValueQuery)
   const { gradeDistributionWithPagination, isLoading, isError } =
     useSearchGradeDistribution({ page })
+  const [search, setSearch] = useState(searchQuery)
+
+  useEffect(() => {
+    setPage(pageQuery)
+    setSelectSortValue(sortValueQuery)
+    setSearch(searchQuery)
+  }, [pageQuery, sortValueQuery, search])
 
   if (isError) throw new Error('error')
   if (isLoading || !gradeDistributionWithPagination) return <p>Loading</p>
@@ -35,7 +49,12 @@ const Search = () => {
           count={gradeDistributionWithPagination.totalPages}
           page={page}
           onChange={(nextPage) => {
-            setPage(nextPage)
+            router.push({
+              pathname: '/search',
+              query: {
+                page: nextPage,
+              },
+            })
           }}
         />
 
