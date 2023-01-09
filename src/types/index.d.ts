@@ -47,10 +47,9 @@ export type GradeDistribution = {
 export type GradeDistributionWithPagination = {
   limit: number
   page: number
-  sort: string
   totalRows: number
   totalPages: number
-  rows: GradeDistribution[]
+  rows: GradeDistribution[] | null
 }
 
 export type APIResponse<T> = {

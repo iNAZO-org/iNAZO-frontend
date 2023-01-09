@@ -24,9 +24,12 @@ const Search = () => {
   const sortValueQuery = String(router.query.sort || 'latest')
   const searchQuery = String(router.query.search || '')
 
+  const [composing, setComposition] = useState(false)
+
   const [page, setPage] = useState(pageQuery)
   const [selectSortValue, setSelectSortValue] = useState(sortValueQuery)
   const [search, setSearch] = useState(searchQuery)
+  const [searchInput, setSearchInput] = useState('')
 
   const { gradeDistributionWithPagination, isLoading, isError } =
     useSearchGradeDistribution({
@@ -78,6 +81,25 @@ const Search = () => {
                     <SearchIcon />
                   </InputAdornment>
                 ),
+                onCompositionStart: () => setComposition(true),
+                onCompositionEnd: () => setComposition(false),
+              }}
+              onKeyDown={(e) => {
+                if (composing) return
+                if (e.key === 'Enter') {
+                  setSearch(searchInput)
+                  router.push({
+                    pathname: '/search',
+                    query: {
+                      page: 1,
+                      sort: selectSortValue,
+                      search: searchInput,
+                    },
+                  })
+                }
+              }}
+              onChange={(e) => {
+                setSearchInput(e.target.value)
               }}
             />
           </Grid>
@@ -116,7 +138,7 @@ const Search = () => {
         </Grid>
 
         <Grid container spacing={4}>
-          {gradeDistributionWithPagination.rows.map((gradeData) => {
+          {gradeDistributionWithPagination.rows?.map((gradeData) => {
             return (
               <Grid key={gradeData.id} item xs={6}>
                 <GradeDistributionCard gradeDistribution={gradeData} />
