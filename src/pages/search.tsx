@@ -9,7 +9,7 @@ import {
   FormControl,
 } from '@mui/material'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import Pagination from 'components/atoms/Pagination'
 import GradeDistributionCard from 'components/molecules/GradeDistributionCard'
@@ -44,6 +44,20 @@ const Search = () => {
     setSearch(searchQuery)
   }, [pageQuery, sortValueQuery, search])
 
+  const handlePaginationOnChange = useCallback(
+    (nextPage: number) => {
+      router.push({
+        pathname: '/search',
+        query: {
+          page: nextPage,
+          sort: selectSortValue,
+          search: search,
+        },
+      })
+    },
+    [router, selectSortValue, search],
+  )
+
   if (isError) throw new Error('error')
   if (isLoading || !gradeDistributionWithPagination) return <p>Loading</p>
 
@@ -56,16 +70,7 @@ const Search = () => {
         <Pagination
           count={gradeDistributionWithPagination.totalPages}
           page={page}
-          onChange={(nextPage) => {
-            router.push({
-              pathname: '/search',
-              query: {
-                page: nextPage,
-                sort: selectSortValue,
-                search: search,
-              },
-            })
-          }}
+          onChange={handlePaginationOnChange}
         />
 
         <Grid container sx={{ my: '5rem' }}>
@@ -98,9 +103,7 @@ const Search = () => {
                   })
                 }
               }}
-              onChange={(e) => {
-                setSearchInput(e.target.value)
-              }}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </Grid>
 
@@ -150,9 +153,7 @@ const Search = () => {
         <Pagination
           count={gradeDistributionWithPagination.totalPages}
           page={page}
-          onChange={(nextPage) => {
-            setPage(nextPage)
-          }}
+          onChange={handlePaginationOnChange}
         />
       </BasicLayout>
     </>

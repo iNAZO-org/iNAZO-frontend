@@ -1,4 +1,9 @@
-import { Grid, Pagination as MUIPaginaton, Stack } from '@mui/material'
+import {
+  Grid,
+  Pagination as MUIPaginaton,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { FC } from 'react'
 import { BaseProps } from 'types'
 
@@ -11,6 +16,7 @@ type PaginationProps = BaseProps & {
 const Pagination: FC<PaginationProps> = ({ page, count, onChange }) => {
   return (
     <Stack alignItems="center" sx={{ my: '2rem' }}>
+      <Typography sx={{ mb: '1rem' }}>{count}件</Typography>
       <MUIPaginaton
         count={count}
         page={page}
