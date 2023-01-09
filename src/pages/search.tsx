@@ -26,9 +26,14 @@ const Search = () => {
 
   const [page, setPage] = useState(pageQuery)
   const [selectSortValue, setSelectSortValue] = useState(sortValueQuery)
-  const { gradeDistributionWithPagination, isLoading, isError } =
-    useSearchGradeDistribution({ page })
   const [search, setSearch] = useState(searchQuery)
+
+  const { gradeDistributionWithPagination, isLoading, isError } =
+    useSearchGradeDistribution({
+      page: page,
+      sort: sortValueQuery,
+      search: search,
+    })
 
   useEffect(() => {
     setPage(pageQuery)
@@ -53,6 +58,8 @@ const Search = () => {
               pathname: '/search',
               query: {
                 page: nextPage,
+                sort: selectSortValue,
+                search: search,
               },
             })
           }}
@@ -85,7 +92,14 @@ const Search = () => {
                 label="Sort"
                 value={selectSortValue}
                 onChange={(e) => {
-                  setSelectSortValue(e.target.value)
+                  router.push({
+                    pathname: '/search',
+                    query: {
+                      page: 1,
+                      sort: e.target.value,
+                      search: search,
+                    },
+                  })
                 }}
               >
                 <MenuItem value="latest">新着順</MenuItem>

@@ -6,6 +6,7 @@ type SearchGradeDistributionQuery = {
   page?: number
   limit?: number
   sort?: string
+  search?: string
 }
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
@@ -24,6 +25,9 @@ export const useSearchGradeDistribution = (
   }
   if (query.sort) {
     endPoint += `sort=${query.sort}&`
+  }
+  if (query.search) {
+    endPoint += `search=${query.search}`
   }
 
   const { data, error, isLoading } = useSWR<
