@@ -8,6 +8,8 @@ import BasicLayout from 'components/templates/BasicLayout'
 import { useSearchGradeDistribution } from 'utils/api'
 import { useRouter } from 'next/router'
 import SearchForm from 'components/organisms/SearchForm'
+import Loading from 'components/atoms/Loading'
+import LoadingLayout from 'components/templates/LoadingLayout'
 
 const Search = () => {
   const router = useRouter()
@@ -50,7 +52,8 @@ const Search = () => {
   )
 
   if (isError) throw new Error('error')
-  if (isLoading || !gradeDistributionWithPagination) return <p>Loading</p>
+  if (isLoading || !gradeDistributionWithPagination)
+    return <LoadingLayout open />
 
   return (
     <>
