@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid, Alert, Typography } from '@mui/material'
 import Head from 'next/head'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -63,6 +63,15 @@ const Search = () => {
           page={page}
           onChange={handlePaginationOnChange}
         />
+
+        {search && (
+          <Alert severity="info">
+            <Typography component="span" fontWeight="600">
+              検索結果：
+            </Typography>
+            <Typography component="span">{search}</Typography>
+          </Alert>
+        )}
 
         <SearchForm
           selectSortValue={selectSortValue}

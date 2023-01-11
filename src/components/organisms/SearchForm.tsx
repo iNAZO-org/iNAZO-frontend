@@ -25,7 +25,7 @@ const SearchForm: FC<SearchFormProps> = ({
   const [searchInput, setSearchInput] = useState('')
 
   return (
-    <Grid container sx={{ my: '5rem' }}>
+    <Grid container sx={{ my: '3rem' }}>
       <Grid item xs={4}>
         <TextField
           label="講義を検索する"
