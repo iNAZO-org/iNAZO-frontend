@@ -8,7 +8,6 @@ import BasicLayout from 'components/templates/BasicLayout'
 import { useSearchGradeDistribution } from 'utils/api'
 import { useRouter } from 'next/router'
 import SearchForm from 'components/organisms/SearchForm'
-import Loading from 'components/atoms/Loading'
 import LoadingLayout from 'components/templates/LoadingLayout'
 
 const Search = () => {
@@ -62,6 +61,7 @@ const Search = () => {
       </Head>
       <BasicLayout>
         <Pagination
+          totalRows={gradeDistributionWithPagination.totalRows}
           count={gradeDistributionWithPagination.totalPages}
           page={page}
           onChange={handlePaginationOnChange}
@@ -100,7 +100,7 @@ const Search = () => {
           }}
         />
 
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ my: '4rem' }}>
           {gradeDistributionWithPagination.rows?.map((gradeData) => {
             return (
               <Grid key={gradeData.id} item xs={6}>
@@ -111,6 +111,7 @@ const Search = () => {
         </Grid>
 
         <Pagination
+          totalRows={gradeDistributionWithPagination.totalRows}
           count={gradeDistributionWithPagination.totalPages}
           page={page}
           onChange={handlePaginationOnChange}

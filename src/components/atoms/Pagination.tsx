@@ -10,13 +10,19 @@ import { BaseProps } from 'types'
 type PaginationProps = BaseProps & {
   page: number
   count: number
+  totalRows: number
   onChange: (nextPage: number) => void
 }
 
-const Pagination: FC<PaginationProps> = ({ page, count, onChange }) => {
+const Pagination: FC<PaginationProps> = ({
+  page,
+  count,
+  totalRows,
+  onChange,
+}) => {
   return (
     <Stack alignItems="center" sx={{ my: '2rem' }}>
-      <Typography sx={{ mb: '1rem' }}>{count}件</Typography>
+      <Typography sx={{ mb: '1rem' }}>{totalRows}件</Typography>
       <MUIPaginaton
         count={count}
         page={page}
