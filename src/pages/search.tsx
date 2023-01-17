@@ -1,14 +1,14 @@
 import { Grid, Alert, Typography } from '@mui/material'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 
 import Pagination from 'components/atoms/Pagination'
 import GradeDistributionCard from 'components/molecules/GradeDistributionCard'
-import BasicLayout from 'components/templates/BasicLayout'
-import { useSearchGradeDistribution } from 'utils/api'
-import { useRouter } from 'next/router'
 import SearchForm from 'components/organisms/SearchForm'
+import BasicLayout from 'components/templates/BasicLayout'
 import LoadingLayout from 'components/templates/LoadingLayout'
+import { useSearchGradeDistribution } from 'utils/api'
 
 const Search = () => {
   const router = useRouter()

@@ -1,8 +1,7 @@
 import { Star } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import { AppBar, Toolbar, Typography, Box } from '@mui/material'
+import Link from 'next/link'
 import { FC } from 'react'
 
 import LinkWithIcon from 'components/molecules/LinkWithIcon'
@@ -14,9 +13,23 @@ const Header: FC<HeaderProps> = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          iNAZO
-        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <Typography
+              variant="h4"
+              sx={{
+                display: 'inline-block',
+                fontFamily: 'Oswald',
+                color: 'white',
+                ml: '1rem',
+                mb: '0.2rem',
+              }}
+            >
+              iNAZO
+            </Typography>
+          </Link>
+        </Box>
+
         <LinkWithIcon href="/search" icon={<SearchIcon />} sx={{ mr: '1rem' }}>
           SEARCH
         </LinkWithIcon>
