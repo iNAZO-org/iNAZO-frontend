@@ -4,6 +4,12 @@ export type BaseProps = {
   sx?: SxProps<Theme>
 }
 
+export type SearchURLQuery = {
+  page?: number
+  sort?: string
+  search?: string
+}
+
 export type GradeDistributionGraphData = {
   apCount: number
   aCount: number
