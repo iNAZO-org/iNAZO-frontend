@@ -7,6 +7,7 @@ type SearchGradeDistributionQuery = {
   limit?: number
   sort?: string
   search?: string
+  ids?: string
 }
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
@@ -16,7 +17,8 @@ export const useSearchGradeDistribution = (
   query: SearchGradeDistributionQuery,
 ) => {
   let endPoint = baseURL + '/api/grade_distribution?'
-  // 0、空白の場合もクエリから除外する
+
+  // 0、空白の場合もクエリから除外するため、URLSearchParamsを使用しない
   if (query.page) {
     endPoint += `page=${query.page}&`
   }
@@ -27,7 +29,11 @@ export const useSearchGradeDistribution = (
     endPoint += `sort=${query.sort}&`
   }
   if (query.search) {
-    endPoint += `search=${query.search}`
+    endPoint += `search=${query.search}&`
+  }
+
+  if (query.ids) {
+    endPoint += `ids=${query.ids}`
   }
 
   const { data, error, isLoading } = useSWR<
