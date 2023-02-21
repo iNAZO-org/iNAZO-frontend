@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = () => {
         <Box
           sx={{
             flexGrow: 1,
-            ml: '1rem',
+            ml: '0.5rem',
             '&:hover': {
               opacity: 0.7,
             },
@@ -43,6 +43,10 @@ const Header: FC<HeaderProps> = () => {
             mr: '1rem',
             opacity: 0.7,
             fontWeight: 600,
+            display: {
+              xs: 'none',
+              sm: 'flex',
+            },
             ...(router.pathname === '/search' && {
               opacity: 1,
             }),
@@ -57,6 +61,10 @@ const Header: FC<HeaderProps> = () => {
             mr: '1rem',
             opacity: 0.7,
             fontWeight: 600,
+            display: {
+              xs: 'none',
+              sm: 'flex',
+            },
             ...(router.pathname === '/bookmark' && {
               opacity: 1,
             }),

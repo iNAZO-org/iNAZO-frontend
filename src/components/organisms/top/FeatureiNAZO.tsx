@@ -24,7 +24,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
         の特徴
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <FeatureCard
             title="シェア機能"
             imgSrc="/share_top.png"
@@ -36,7 +36,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
           </FeatureCard>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <FeatureCard
             title="ブックマーク登録"
             imgSrc="/share_top.png"
@@ -48,7 +48,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
           </FeatureCard>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <FeatureCard
             title="ソート検索"
             imgSrc="/share_top.png"

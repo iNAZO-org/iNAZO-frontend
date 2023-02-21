@@ -30,7 +30,10 @@ const Links: FC<LinksProps> = ({ sx }) => {
       sx={{
         ...sx,
         background: '#eeeeee',
-        p: '5rem',
+        p: {
+          xs: '3rem 1rem',
+          sm: '5rem',
+        },
         my: '5rem',
         borderRadius: '1rem',
       }}

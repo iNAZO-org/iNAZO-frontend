@@ -24,6 +24,7 @@ const QuestionRow: FC<QuestionRowProps> = ({
       width: '50px',
       height: '50px',
       mr: '2rem',
+      flexShrink: 0,
     },
   }
   const questionStyle = {
@@ -45,12 +46,11 @@ const QuestionRow: FC<QuestionRowProps> = ({
     },
   }
   return (
-    <Typography
-      variant="subtitle1"
-      sx={variant === 'question' ? questionStyle : answerStyle}
-    >
-      {children}
-    </Typography>
+    <Box sx={variant === 'question' ? questionStyle : answerStyle}>
+      <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+        {children}
+      </Typography>
+    </Box>
   )
 }
 
@@ -61,7 +61,10 @@ const Question: FC<QuestionProps> = () => {
     <Box
       sx={{
         background: '#eeeeee',
-        p: '5rem',
+        p: {
+          xs: '3rem 1rem',
+          sm: '5rem',
+        },
         my: '5rem',
         borderRadius: '1rem',
       }}
