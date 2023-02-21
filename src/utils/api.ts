@@ -15,6 +15,7 @@ const baseURL = 'http://localhost:8000'
 
 export const useSearchGradeDistribution = (
   query: SearchGradeDistributionQuery,
+  isReady: boolean,
 ) => {
   let endPoint = baseURL + '/api/grade_distribution?'
 
@@ -33,13 +34,13 @@ export const useSearchGradeDistribution = (
   }
 
   if (query.ids) {
-    endPoint += `ids=${query.ids}`
+    endPoint += `ids=${query.ids}&`
   }
 
   const { data, error, isLoading } = useSWR<
     APIResponse<GradeDistributionWithPagination>,
     Error
-  >(endPoint, fetcher)
+  >(isReady ? endPoint : null, fetcher)
 
   return {
     gradeDistributionWithPagination: data?.result,

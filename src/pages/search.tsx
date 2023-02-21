@@ -21,19 +21,25 @@ const Search = () => {
   const [page, setPage] = useState(0)
   const [selectSortValue, setSelectSortValue] = useState('')
   const [search, setSearch] = useState('')
+  const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
 
   const { gradeDistributionWithPagination, isLoading, isError } =
-    useSearchGradeDistribution({
-      page: page,
-      sort: selectSortValue,
-      search: search,
-    })
+    useSearchGradeDistribution(
+      {
+        page: page,
+        sort: selectSortValue,
+        search: search,
+      },
+      isReadyQuery,
+    )
 
   useEffect(() => {
+    console.log(router.isReady, pageQuery, sortValueQuery, searchQuery)
     if (router.isReady) {
       setPage(Number(pageQuery || '1'))
       setSelectSortValue(String(sortValueQuery || 'latest'))
       setSearch(String(searchQuery || ''))
+      setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
     }
   }, [pageQuery, sortValueQuery, searchQuery])
 
