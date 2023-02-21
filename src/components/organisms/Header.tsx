@@ -6,6 +6,7 @@ import { FC } from 'react'
 
 import LinkWithIcon from 'components/molecules/LinkWithIcon'
 import { BaseProps } from 'types'
+import Image from 'next/image'
 
 type HeaderProps = BaseProps
 
@@ -13,20 +14,22 @@ const Header: FC<HeaderProps> = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <Typography
-              variant="h4"
-              sx={{
-                display: 'inline-block',
-                fontFamily: 'Oswald',
-                color: 'white',
-                ml: '1rem',
-                mb: '0.2rem',
-              }}
-            >
-              iNAZO
-            </Typography>
+        <Box
+          sx={{
+            flexGrow: 1,
+            ml: '1rem',
+            '&:hover': {
+              opacity: 0.7,
+            },
+          }}
+        >
+          <Link href="/">
+            <Image
+              src="/iNAZO_logo.png"
+              alt="iNAZO logo"
+              width={150}
+              height={45}
+            />
           </Link>
         </Box>
 
