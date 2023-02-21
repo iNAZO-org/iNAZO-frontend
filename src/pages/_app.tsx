@@ -15,6 +15,8 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
+import '../styles/global.css'
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const theme = createTheme({
@@ -29,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ThemeProvider>
   )
 }

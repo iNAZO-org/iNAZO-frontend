@@ -1,4 +1,5 @@
 import { Container } from '@mui/material'
+import Footer from 'components/organisms/Footer'
 
 import Header from 'components/organisms/Header'
 import { BaseProps } from 'types'
@@ -12,6 +13,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
     <div style={{ height: '100%' }}>
       <Header />
       <Container sx={{ marginTop: '4rem' }}>{children}</Container>
+      <Footer />
     </div>
   )
 }
