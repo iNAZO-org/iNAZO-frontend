@@ -1,6 +1,7 @@
 import { Container } from '@mui/material'
-import Footer from 'components/organisms/Footer'
 
+import BottomNav from 'components/molecules/BottomNav'
+import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { BaseProps } from 'types'
 
@@ -14,6 +15,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
       <Header />
       <Container sx={{ marginTop: '4rem' }}>{children}</Container>
       <Footer />
+      {/* スマホのみ表示 */}
+      <BottomNav sx={{ display: { xs: 'block', sm: 'none' } }} />
     </div>
   )
 }
