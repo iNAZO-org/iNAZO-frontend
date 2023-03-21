@@ -24,7 +24,7 @@ const Search = () => {
   const [search, setSearch] = useState('')
   const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
 
-  const { gradeDistributionWithPagination, isLoading, isError } =
+  const { gradeDistributionWithPagination, isLoading, error } =
     useSearchGradeDistribution(
       {
         page: page,
@@ -57,7 +57,7 @@ const Search = () => {
     [router, selectSortValue, search],
   )
 
-  if (isError) throw new Error('error')
+  if (error) throw error
   if (isLoading || !gradeDistributionWithPagination)
     return <LoadingLayout open />
 

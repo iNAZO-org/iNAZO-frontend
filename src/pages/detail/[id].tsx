@@ -15,7 +15,7 @@ const DetailPage = () => {
   const [gradeId, setGradeId] = useState('')
   const [isReadyQuery, setIsReadyQuery] = useState(false)
 
-  const { gradeDistributionWithPagination, isLoading, isError } =
+  const { gradeDistributionWithPagination, isLoading, error } =
     useSearchGradeDistribution(
       {
         ids: gradeId,
@@ -30,7 +30,7 @@ const DetailPage = () => {
     }
   }, [router.isReady])
 
-  if (isError) throw new Error('error')
+  if (error) throw error
   if (isLoading || !gradeDistributionWithPagination)
     return <LoadingLayout open />
   if (gradeDistributionWithPagination.rows?.length !== 1)

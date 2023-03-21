@@ -11,3 +11,7 @@ export const getBookmarkListFromLocalStorage = () => {
     .map((v) => parseInt(v))
   return bookmarkList
 }
+
+export const unreachable = (v: never) => {
+  throw new Error('到達するべきではない箇所が実行されました')
+}
