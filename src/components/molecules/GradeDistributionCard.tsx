@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { Box, Card, CardContent, Typography } from '@mui/material'
+import Link from 'next/link'
 
 import BookmarkButton from '@/components/atoms/BookmarkButton'
 import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
@@ -37,7 +38,9 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
     <Card>
       <CardContent>
         <Typography variant="h5" fontWeight="bold" sx={{ mb: '0.5rem' }}>
-          {gradeDistribution.subject} {gradeDistribution.subTitle}
+          <Link href={`/detail/${gradeDistribution.id}`}>
+            {gradeDistribution.subject} {gradeDistribution.subTitle}
+          </Link>
         </Typography>
         <Typography sx={{ mb: '0.5rem' }}>
           {gradeDistribution.year}年度 {gradeDistribution.semester}学期
