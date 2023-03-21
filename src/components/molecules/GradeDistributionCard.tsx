@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Card, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardContent, Typography } from '@mui/material'
 
 import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
 import {
@@ -8,6 +8,7 @@ import {
   GradeDistribution,
   GradeDistributionGraphData,
 } from '@/types'
+import BookmarkButton from '@/components/atoms/BookmarkButton'
 
 type GradeDistributionCardProps = BaseProps & {
   gradeDistribution: GradeDistribution
@@ -54,6 +55,9 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
         <Typography sx={{ mb: '0.5rem' }}>
           GPA： {gradeDistribution.gpa}
         </Typography>
+        <Box>
+          <BookmarkButton gradeDistributionId={gradeDistribution.id} />
+        </Box>
         <GradeDistributionGraph data={gradeDistributionGraphData} />
       </CardContent>
     </Card>

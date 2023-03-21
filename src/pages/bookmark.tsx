@@ -11,6 +11,7 @@ import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
 import { useSearchGradeDistribution } from '@/utils/api'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
+import { LOCAL_STORAGE_BOOKMARK_KEY } from '@/utils/settings'
 
 const Search = () => {
   const router = useRouter()
@@ -41,7 +42,11 @@ const Search = () => {
       setPage(Number(pageQuery || '1'))
       setSelectSortValue(String(sortValueQuery || 'latest'))
       setSearch(String(searchQuery || ''))
-      setGradeIds('1,2,3,4,5,6,7,8,9,10,11,12,13,14') // TODO: localStorageを使う
+
+      const bookmarkList =
+        localStorage.getItem(LOCAL_STORAGE_BOOKMARK_KEY) || ''
+      setGradeIds(bookmarkList)
+
       setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
     }
   }, [pageQuery, sortValueQuery, searchQuery])
