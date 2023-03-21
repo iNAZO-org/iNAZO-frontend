@@ -10,7 +10,7 @@ import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
 import { useSearchGradeDistribution } from '@/utils/api'
-import { RemoveOptionalKeyOfSearchQuery } from '@/utils/query'
+import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
 
 const Search = () => {
   const router = useRouter()
@@ -48,7 +48,7 @@ const Search = () => {
     (nextPage: number) => {
       router.push({
         pathname: '/search',
-        query: RemoveOptionalKeyOfSearchQuery({
+        query: removeOptionalKeyOfSearchQuery({
           page: nextPage,
           sort: selectSortValue,
           search: search,
@@ -89,7 +89,7 @@ const Search = () => {
           onEnter={(searchInput) => {
             router.push({
               pathname: '/search',
-              query: RemoveOptionalKeyOfSearchQuery({
+              query: removeOptionalKeyOfSearchQuery({
                 page: 1,
                 sort: selectSortValue,
                 search: searchInput,
@@ -99,7 +99,7 @@ const Search = () => {
           onSelectSortChange={(selectSort) => {
             router.push({
               pathname: '/search',
-              query: RemoveOptionalKeyOfSearchQuery({
+              query: removeOptionalKeyOfSearchQuery({
                 page: 1,
                 sort: selectSort,
                 search: search,

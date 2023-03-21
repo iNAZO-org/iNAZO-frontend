@@ -1,46 +1,36 @@
 import useSWR from 'swr'
+import axios from 'axios'
 
-import { APIResponse, GradeDistributionWithPagination } from '@/types'
+import {
+  APIResponse,
+  GradeDistributionWithPagination,
+  SearchGradeDistributionQuery,
+} from '@/types'
+import { BASE_URL } from '@/utils/settings'
+import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
 
-type SearchGradeDistributionQuery = {
-  page?: number
-  limit?: number
-  sort?: string
-  search?: string
-  ids?: string
+type FetcherParams = [string, { [key: string]: string | number }]
+
+const fetcher = ([endpoint, query]: FetcherParams) => {
+  return axios
+    .get(endpoint, {
+      params: query,
+    })
+    .then((r) => r.data)
 }
-
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
-const baseURL = 'http://localhost:8000'
 
 export const useSearchGradeDistribution = (
   query: SearchGradeDistributionQuery,
   isReady: boolean,
 ) => {
-  let endPoint = baseURL + '/api/grade_distribution?'
-
-  // 0、空白の場合もクエリから除外するため、URLSearchParamsを使用しない
-  if (query.page) {
-    endPoint += `page=${query.page}&`
-  }
-  if (query.limit) {
-    endPoint += `limit=${query.limit}&`
-  }
-  if (query.sort) {
-    endPoint += `sort=${query.sort}&`
-  }
-  if (query.search) {
-    endPoint += `search=${query.search}&`
-  }
-
-  if (query.ids) {
-    endPoint += `ids=${query.ids}&`
-  }
+  const endPoint = `${BASE_URL}/api/grade_distribution`
+  // 0、空白の場合はクエリから除外する
+  const removedQuery = removeOptionalKeyOfSearchQuery(query)
 
   const { data, error, isLoading } = useSWR<
     APIResponse<GradeDistributionWithPagination>,
     Error
-  >(isReady ? endPoint : null, fetcher)
+  >(isReady ? [endPoint, removedQuery] : null, fetcher)
 
   return {
     gradeDistributionWithPagination: data?.result,

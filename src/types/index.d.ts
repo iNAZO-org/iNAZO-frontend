@@ -4,24 +4,12 @@ export type BaseProps = {
   sx?: SxProps<Theme>
 }
 
-export type SearchURLQuery = {
+export type SearchGradeDistributionQuery = {
   page?: number
+  limit?: number
   sort?: string
   search?: string
-}
-
-export type GradeDistributionGraphData = {
-  apCount: number
-  aCount: number
-  amCount: number
-  bpCount: number
-  bCount: number
-  bmCount: number
-  cpCount: number
-  cCount: number
-  dCount: number
-  dmCount: number
-  fCount: number
+  ids?: string
 }
 
 export type GradeDistribution = {
@@ -49,6 +37,21 @@ export type GradeDistribution = {
   dmCount: number
   fCount: number
 }
+
+export type GradeDistributionGraphData = Pick<
+  GradeDistribution,
+  | 'apCount'
+  | 'aCount'
+  | 'amCount'
+  | 'bpCount'
+  | 'bCount'
+  | 'bmCount'
+  | 'cpCount'
+  | 'cCount'
+  | 'dCount'
+  | 'dmCount'
+  | 'fCount'
+>
 
 export type GradeDistributionWithPagination = {
   limit: number
