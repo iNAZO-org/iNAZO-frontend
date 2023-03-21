@@ -1,4 +1,3 @@
-import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives/url'
 import useSWR from 'swr'
 
 import { APIResponse, GradeDistributionWithPagination } from '@/types'

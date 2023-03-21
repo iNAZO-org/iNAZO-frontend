@@ -1,11 +1,6 @@
 import { FC } from 'react'
 
-import {
-  Grid,
-  Pagination as MUIPaginaton,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Pagination as MUIPaginaton, Stack, Typography } from '@mui/material'
 
 import { BaseProps } from '@/types'
 

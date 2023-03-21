@@ -1,4 +1,5 @@
 {
+  "plugins": ["unused-imports"],
   "extends": [
     "next",
     "next/core-web-vitals",
@@ -44,6 +45,8 @@
         "newlines-between": "always"
       }
     ],
-    "react/prop-types": ["off"]
+    "react/prop-types": ["off"],
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error"
   }
 }

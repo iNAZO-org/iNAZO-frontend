@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { Typography, Grid, Box, Link } from '@mui/material'
+import { Typography, Box, Link } from '@mui/material'
 
 import { BaseProps } from '@/types'
 

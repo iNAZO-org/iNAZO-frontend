@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Star } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
-import { AppBar, Toolbar, Typography, Box } from '@mui/material'
+import { AppBar, Toolbar, Box } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
