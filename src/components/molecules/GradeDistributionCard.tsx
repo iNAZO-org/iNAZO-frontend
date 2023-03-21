@@ -2,13 +2,13 @@ import { FC } from 'react'
 
 import { Box, Card, CardContent, Typography } from '@mui/material'
 
+import BookmarkButton from '@/components/atoms/BookmarkButton'
 import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
 import {
   BaseProps,
   GradeDistribution,
   GradeDistributionGraphData,
 } from '@/types'
-import BookmarkButton from '@/components/atoms/BookmarkButton'
 
 type GradeDistributionCardProps = BaseProps & {
   gradeDistribution: GradeDistribution

@@ -10,8 +10,8 @@ import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
 import { useSearchGradeDistribution } from '@/utils/api'
+import { getBookmarkListFromLocalStorage } from '@/utils/common'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
-import { LOCAL_STORAGE_BOOKMARK_KEY } from '@/utils/settings'
 
 const Search = () => {
   const router = useRouter()
@@ -23,7 +23,7 @@ const Search = () => {
   const [page, setPage] = useState(0)
   const [selectSortValue, setSelectSortValue] = useState('')
   const [search, setSearch] = useState('')
-  const [gradeIds, setGradeIds] = useState('')
+  const [gradeIds, setGradeIds] = useState<number[]>([])
   const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
 
   const { gradeDistributionWithPagination, isLoading, isError } =
@@ -32,7 +32,7 @@ const Search = () => {
         page: page,
         sort: selectSortValue,
         search: search,
-        ids: gradeIds,
+        ids: gradeIds.join(','),
       },
       isReadyQuery,
     )
@@ -43,8 +43,7 @@ const Search = () => {
       setSelectSortValue(String(sortValueQuery || 'latest'))
       setSearch(String(searchQuery || ''))
 
-      const bookmarkList =
-        localStorage.getItem(LOCAL_STORAGE_BOOKMARK_KEY) || ''
+      const bookmarkList = getBookmarkListFromLocalStorage()
       setGradeIds(bookmarkList)
 
       setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
