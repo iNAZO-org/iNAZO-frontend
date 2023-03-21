@@ -14,7 +14,8 @@ const TwitterShareButton = ({
 }: TwitterShareButtonProps) => {
   const content = '成績分布検索サービス - iNAZO'
   const hashtags = '%23iNAZO'
-  const textQuery = `${content}%0a${hashtags}%0a${BASE_URL}/detail/${gradeDistributionId}`
+  const detailURL = `${BASE_URL}/detail/${gradeDistributionId}`
+  const textQuery = `${content}%0a${hashtags}%0a${detailURL}`
   const shareURL = `https://twitter.com/intent/tweet?text=${textQuery}`
 
   return (
