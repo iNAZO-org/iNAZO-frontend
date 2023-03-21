@@ -1,8 +1,9 @@
-import { Typography, Grid, Box } from '@mui/material'
 import { FC } from 'react'
 
-import FeatureCard from 'components/molecules/FeatureCard'
-import { BaseProps } from 'types'
+import { Typography, Grid, Box } from '@mui/material'
+
+import FeatureCard from '@/components/molecules/FeatureCard'
+import { BaseProps } from '@/types'
 
 type FeatureiNAZOProps = BaseProps
 

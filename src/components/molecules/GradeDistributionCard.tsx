@@ -1,8 +1,13 @@
-import { Card, CardContent, Typography } from '@mui/material'
 import { FC } from 'react'
 
-import GradeDistributionGraph from 'components/atoms/GradeDistributionGraph'
-import { BaseProps, GradeDistribution, GradeDistributionGraphData } from 'types'
+import { Card, CardContent, Typography } from '@mui/material'
+
+import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
+import {
+  BaseProps,
+  GradeDistribution,
+  GradeDistributionGraphData,
+} from '@/types'
 
 type GradeDistributionCardProps = BaseProps & {
   gradeDistribution: GradeDistribution

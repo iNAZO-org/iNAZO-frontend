@@ -1,7 +1,8 @@
 import { FC } from 'react'
+
 import { Bar } from 'react-chartjs-2'
 
-import { GradeDistributionGraphData } from 'types'
+import { GradeDistributionGraphData } from '@/types'
 
 type GradeDistributionGraphProps = {
   data: GradeDistributionGraphData

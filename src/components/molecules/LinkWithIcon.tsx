@@ -1,8 +1,10 @@
+import { FC } from 'react'
+
 import { Box } from '@mui/material'
 import MuiLink from '@mui/material/Link'
-import type { LinkProps } from '@mui/material/Link'
 import Link from 'next/link'
-import { FC } from 'react'
+
+import type { LinkProps } from '@mui/material/Link'
 
 type LinkWithIconProps = LinkProps & {
   href: string

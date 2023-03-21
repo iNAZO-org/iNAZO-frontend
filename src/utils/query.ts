@@ -1,4 +1,4 @@
-import { SearchURLQuery } from 'types'
+import { SearchURLQuery } from '@/types'
 
 export const RemoveOptionalKeyOfSearchQuery = (query: SearchURLQuery) => {
   const result: SearchURLQuery = {}

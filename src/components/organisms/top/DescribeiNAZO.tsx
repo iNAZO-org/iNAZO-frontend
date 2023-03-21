@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material'
 import { FC } from 'react'
 
-import { BaseProps } from 'types'
+import { Box, Typography } from '@mui/material'
+
+import { BaseProps } from '@/types'
 
 type DescribeiNAZOProps = BaseProps
 

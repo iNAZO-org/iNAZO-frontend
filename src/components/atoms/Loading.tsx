@@ -1,7 +1,8 @@
-import { Backdrop, CircularProgress } from '@mui/material'
 import { FC } from 'react'
 
-import { BaseProps } from 'types'
+import { Backdrop, CircularProgress } from '@mui/material'
+
+import { BaseProps } from '@/types'
 
 type LoadingProps = BaseProps & {
   open: boolean

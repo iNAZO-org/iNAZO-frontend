@@ -9,13 +9,14 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+
 import type { AppProps } from 'next/app'
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
-import '../styles/global.css'
+import '@/styles/global.css'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 

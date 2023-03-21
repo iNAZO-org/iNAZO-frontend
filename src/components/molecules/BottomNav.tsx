@@ -1,9 +1,11 @@
+import { FC, SyntheticEvent, useEffect, useState } from 'react'
+
 import { Home, Star, Search } from '@mui/icons-material'
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FC, SyntheticEvent, useEffect, useState } from 'react'
-import { BaseProps } from 'types'
+
+import { BaseProps } from '@/types'
 
 const HOME_BOTTOMNAV_VALUE = 0
 const SEARCH_BOTTOMNAV_VALUE = 1

@@ -1,3 +1,5 @@
+import { FC, useState } from 'react'
+
 import SearchIcon from '@mui/icons-material/Search'
 import {
   Grid,
@@ -8,7 +10,6 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material'
-import { FC, useState } from 'react'
 
 type SearchFormProps = {
   selectSortValue: string

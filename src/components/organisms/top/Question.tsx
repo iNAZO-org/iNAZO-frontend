@@ -1,7 +1,8 @@
-import { Typography, Grid, Box, Link } from '@mui/material'
 import { FC, ReactNode } from 'react'
 
-import { BaseProps } from 'types'
+import { Typography, Grid, Box, Link } from '@mui/material'
+
+import { BaseProps } from '@/types'
 
 type QuestionRowProps = BaseProps & {
   variant?: 'question' | 'answer'

@@ -1,7 +1,8 @@
-import { Card, Typography, CardContent, CardMedia } from '@mui/material'
 import { FC, ReactNode } from 'react'
 
-import { BaseProps } from 'types'
+import { Card, Typography, CardContent, CardMedia } from '@mui/material'
+
+import { BaseProps } from '@/types'
 
 type FeatureCardProps = BaseProps & {
   title: string

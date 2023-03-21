@@ -1,7 +1,7 @@
-import BasicLayout from './BasicLayout'
-import Loading from 'components/atoms/Loading'
+import Loading from '@/components/atoms/Loading'
+import { BaseProps } from '@/types'
 
-import { BaseProps } from 'types'
+import BasicLayout from './BasicLayout'
 
 type LoadingLayoutProps = BaseProps & {
   open: boolean

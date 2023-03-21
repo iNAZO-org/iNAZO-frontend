@@ -1,9 +1,10 @@
 import { Container } from '@mui/material'
 
+import { BaseProps } from '@/types'
+
 import BottomNav from 'components/molecules/BottomNav'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import { BaseProps } from 'types'
 
 type BasicLayoutProps = BaseProps & {
   children: React.ReactNode

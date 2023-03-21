@@ -1,11 +1,13 @@
+import { FC } from 'react'
+
 import {
   Grid,
   Pagination as MUIPaginaton,
   Stack,
   Typography,
 } from '@mui/material'
-import { FC } from 'react'
-import { BaseProps } from 'types'
+
+import { BaseProps } from '@/types'
 
 type PaginationProps = BaseProps & {
   page: number

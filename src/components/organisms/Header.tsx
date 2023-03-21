@@ -1,13 +1,14 @@
+import { FC } from 'react'
+
 import { Star } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import { AppBar, Toolbar, Typography, Box } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
 
-import LinkWithIcon from 'components/molecules/LinkWithIcon'
-import { BaseProps } from 'types'
+import LinkWithIcon from '@/components/molecules/LinkWithIcon'
+import { BaseProps } from '@/types'
 
 type HeaderProps = BaseProps
 
