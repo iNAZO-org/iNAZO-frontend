@@ -1,4 +1,4 @@
-import { Link as LinkIcon, Star, Home } from '@mui/icons-material'
+import { Star, Home } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import {
   List,
