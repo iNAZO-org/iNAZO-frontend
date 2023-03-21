@@ -24,11 +24,11 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
         </Typography>
         の特徴
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{ mt: '4rem' }}>
         <Grid item xs={12} sm={4}>
           <FeatureCard
             title="シェア機能"
-            imgSrc="/share_top.png"
+            imgSrc="/icon-share.svg"
             alt="share image"
           >
             <Typography variant="body1">
@@ -40,7 +40,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
         <Grid item xs={12} sm={4}>
           <FeatureCard
             title="ブックマーク登録"
-            imgSrc="/share_top.png"
+            imgSrc="/icon-christmas-star.svg"
             alt="share image"
           >
             <Typography variant="body1">
@@ -52,7 +52,7 @@ const FeatureiNAZO: FC<FeatureiNAZOProps> = ({ sx }) => {
         <Grid item xs={12} sm={4}>
           <FeatureCard
             title="ソート検索"
-            imgSrc="/share_top.png"
+            imgSrc="/icon-sorting.svg"
             alt="share image"
           >
             <Typography variant="body1">

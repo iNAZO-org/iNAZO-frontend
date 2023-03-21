@@ -18,10 +18,20 @@ const FeatureCard: FC<FeatureCardProps> = ({
   alt,
 }) => {
   return (
-    <Card sx={{ minWidth: '200px', pb: '3rem' }}>
-      <CardMedia component="img" height="300" image={imgSrc} alt={alt} />
+    <Card sx={{ minWidth: '200px', pb: '3rem' }} elevation={0}>
+      <CardMedia
+        component="img"
+        height="300"
+        image={imgSrc}
+        alt={alt}
+        sx={{ padding: '1rem 1rem 0 1rem', objectFit: 'contain' }}
+      />
       <CardContent sx={{ px: '2rem' }}>
-        <Typography variant="h5" sx={{ p: '1rem 0' }}>
+        <Typography
+          align="center"
+          variant="h5"
+          sx={{ p: '1rem 0 2rem', fontWeight: 'bold' }}
+        >
           {title}
         </Typography>
         {children}
