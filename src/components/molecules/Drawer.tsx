@@ -8,8 +8,10 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  Divider,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import Image from 'next/image'
 import Link from 'next/link'
 
 type DrawerRightProps = {
@@ -39,7 +41,15 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
     >
       <List
         subheader={
-          <ListSubheader component="div">サイト内リンク</ListSubheader>
+          <ListSubheader
+            component="div"
+            sx={{
+              mt: '1rem',
+              fontWeight: 'bold',
+            }}
+          >
+            サイト内リンク
+          </ListSubheader>
         }
       >
         <StyledLink href="/">
@@ -78,8 +88,20 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
         </StyledLink>
       </List>
 
+      <Divider />
+
       <List
-        subheader={<ListSubheader component="div">外部リンク</ListSubheader>}
+        subheader={
+          <ListSubheader
+            component="div"
+            sx={{
+              mt: '1rem',
+              fontWeight: 'bold',
+            }}
+          >
+            外部リンク
+          </ListSubheader>
+        }
       >
         <ListItem
           disablePadding
@@ -89,7 +111,12 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
         >
           <ListItemButton>
             <ListItemIcon>
-              <LinkIcon />
+              <Image
+                src="/JagaJaga_logo.png"
+                width={27}
+                height={27}
+                alt="JagaJaga_logo"
+              />
             </ListItemIcon>
 
             <StyledListItemText primary="JagaJaga" />
