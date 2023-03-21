@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Star } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
-import { yellow, grey } from '@mui/material/colors'
+import { yellow } from '@mui/material/colors'
 
 import { BaseProps } from '@/types'
 import { getBookmarkListFromLocalStorage, uniqueArray } from '@/utils/common'
@@ -45,7 +45,7 @@ const BookmarkButton = ({ gradeDistributionId, sx }: BookmarkButtonProps) => {
       <Star
         sx={{
           fontSize: 40,
-          ...(isBookmarked ? { color: yellow[600] } : { color: grey[500] }),
+          ...(isBookmarked ? { color: yellow[600] } : { color: '#757575' }),
         }}
       />
     </IconButton>

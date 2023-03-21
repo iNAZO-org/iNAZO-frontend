@@ -10,6 +10,8 @@ import {
   GradeDistributionGraphData,
 } from '@/types'
 
+import TwitterShareButton from '../atoms/TwitterShareButton'
+
 type GradeDistributionCardProps = BaseProps & {
   gradeDistribution: GradeDistribution
 }
@@ -55,8 +57,20 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
         <Typography sx={{ mb: '0.5rem' }}>
           GPA： {gradeDistribution.gpa}
         </Typography>
-        <Box>
-          <BookmarkButton gradeDistributionId={gradeDistribution.id} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'right',
+            mr: '1rem',
+          }}
+        >
+          <Box>
+            <BookmarkButton
+              gradeDistributionId={gradeDistribution.id}
+              sx={{ mr: '0.5rem' }}
+            />
+            <TwitterShareButton gradeDistributionId={gradeDistribution.id} />
+          </Box>
         </Box>
         <GradeDistributionGraph data={gradeDistributionGraphData} />
       </CardContent>
