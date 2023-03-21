@@ -35,7 +35,6 @@ const Search = () => {
     )
 
   useEffect(() => {
-    console.log(router.isReady, pageQuery, sortValueQuery, searchQuery)
     if (router.isReady) {
       setPage(Number(pageQuery || '1'))
       setSelectSortValue(String(sortValueQuery || 'latest'))

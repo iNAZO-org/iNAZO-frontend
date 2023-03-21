@@ -1,13 +1,13 @@
-import useSWR from 'swr'
 import axios from 'axios'
+import useSWR from 'swr'
 
 import {
   APIResponse,
   GradeDistributionWithPagination,
   SearchGradeDistributionQuery,
 } from '@/types'
-import { BASE_URL } from '@/utils/settings'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
+import { API_BASE_URL } from '@/utils/settings'
 
 type FetcherParams = [string, { [key: string]: string | number }]
 
@@ -23,7 +23,7 @@ export const useSearchGradeDistribution = (
   query: SearchGradeDistributionQuery,
   isReady: boolean,
 ) => {
-  const endPoint = `${BASE_URL}/api/grade_distribution`
+  const endPoint = `${API_BASE_URL}/api/grade_distribution`
   // 0、空白の場合はクエリから除外する
   const removedQuery = removeOptionalKeyOfSearchQuery(query)
 
