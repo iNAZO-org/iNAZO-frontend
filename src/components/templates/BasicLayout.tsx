@@ -12,9 +12,9 @@ type BasicLayoutProps = BaseProps & {
 
 const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <Container sx={{ marginTop: '4rem' }}>{children}</Container>
+      <Container sx={{ marginTop: '4rem', flex: 1 }}>{children}</Container>
       <Footer />
       {/* スマホのみ表示 */}
       <BottomNav sx={{ display: { xs: 'block', sm: 'none' } }} />
