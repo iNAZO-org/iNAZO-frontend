@@ -119,7 +119,7 @@ const Search = () => {
         >
           {gradeDistributionWithPagination.rows?.map((gradeData) => {
             return (
-              <Grid key={gradeData.id} item xs={12} sm={6}>
+              <Grid key={gradeData.id} item xs={12} md={6}>
                 <GradeDistributionCard gradeDistribution={gradeData} />
               </Grid>
             )

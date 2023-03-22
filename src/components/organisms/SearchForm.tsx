@@ -27,7 +27,7 @@ const SearchForm: FC<SearchFormProps> = ({
 
   return (
     <Grid container sx={{ my: { xs: '1rem', sm: '3rem' } }} rowGap={2}>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <TextField
           label="講義を検索する"
           helperText="講義名・教員名・年度・学部・クラスなどで検索ができます"
@@ -52,9 +52,9 @@ const SearchForm: FC<SearchFormProps> = ({
         />
       </Grid>
 
-      <Grid item xs={6} sm={5} />
+      <Grid item xs={6} sm={2} md={5} />
 
-      <Grid item xs={6} sm={3}>
+      <Grid item xs={6} sm={4} md={3}>
         <FormControl fullWidth>
           <InputLabel id="search-label">Sort</InputLabel>
           <Select
