@@ -107,7 +107,16 @@ const Search = () => {
           }}
         />
 
-        <Grid container spacing={4} sx={{ my: '4rem' }}>
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            my: {
+              xs: '1rem',
+              sm: '4rem',
+            },
+          }}
+        >
           {gradeDistributionWithPagination.rows?.map((gradeData) => {
             return (
               <Grid key={gradeData.id} item xs={12} sm={6}>

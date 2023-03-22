@@ -35,7 +35,7 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
   }
 
   return (
-    <Card>
+    <Card elevation={2}>
       <CardContent>
         <Typography variant="h5" fontWeight="bold" sx={{ mb: '0.5rem' }}>
           <Link href={`/detail/${gradeDistribution.id}`}>

@@ -1,6 +1,12 @@
 import { FC } from 'react'
 
-import { Pagination as MUIPaginaton, Stack, Typography } from '@mui/material'
+import {
+  Pagination as MUIPaginaton,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 
 import { BaseProps } from '@/types'
 
@@ -17,6 +23,8 @@ const Pagination: FC<PaginationProps> = ({
   totalRows,
   onChange,
 }) => {
+  const theme = useTheme()
+  const isSmDown = useMediaQuery(() => theme.breakpoints.down('sm'))
   return (
     <Stack alignItems="center" sx={{ my: '2rem' }}>
       <Typography sx={{ mb: '1rem' }}>{totalRows}件</Typography>
@@ -24,10 +32,10 @@ const Pagination: FC<PaginationProps> = ({
         count={count}
         page={page}
         color="primary"
-        size="large"
-        siblingCount={2}
-        showFirstButton
-        showLastButton
+        size={isSmDown ? 'small' : 'large'}
+        siblingCount={isSmDown ? 1 : 2}
+        showFirstButton={!isSmDown}
+        showLastButton={!isSmDown}
         onChange={(_, currentPage) => {
           onChange(currentPage)
         }}
