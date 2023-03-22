@@ -2,13 +2,13 @@ import { Star, Home } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import {
   List,
-  SwipeableDrawer,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
   Divider,
+  Drawer,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Image from 'next/image'
@@ -25,7 +25,7 @@ const drawerWidth = 240
 
 export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
   return (
-    <SwipeableDrawer
+    <Drawer
       sx={{
         width: drawerWidth,
         flexShrink: 0,
@@ -36,7 +36,6 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
       variant="persistent"
       anchor="right"
       onClose={toggleDrawer(false)}
-      onOpen={toggleDrawer(true)}
       open={open}
     >
       <List
@@ -123,7 +122,7 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
           </ListItemButton>
         </ListItem>
       </List>
-    </SwipeableDrawer>
+    </Drawer>
   )
 }
 
