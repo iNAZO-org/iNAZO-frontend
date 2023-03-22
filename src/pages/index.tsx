@@ -8,7 +8,7 @@ import Links from '@/components/organisms/top/Links'
 import Question from '@/components/organisms/top/Question'
 import BasicLayout from '@/components/templates/BasicLayout'
 
-const App = () => {
+const Home = () => {
   return (
     <>
       <Head>
@@ -24,4 +24,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Home

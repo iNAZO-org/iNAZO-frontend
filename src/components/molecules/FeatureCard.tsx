@@ -16,9 +16,10 @@ const FeatureCard: FC<FeatureCardProps> = ({
   children,
   imgSrc,
   alt,
+  sx,
 }) => {
   return (
-    <Card sx={{ minWidth: '200px', pb: '3rem' }} elevation={0}>
+    <Card sx={{ minWidth: '200px', pb: '3rem', ...sx }} elevation={0}>
       <CardMedia
         component="img"
         height="300"

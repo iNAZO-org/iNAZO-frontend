@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import Loading from '@/components/atoms/Loading'
 import { BaseProps } from '@/types'
 
@@ -7,7 +9,7 @@ type LoadingLayoutProps = BaseProps & {
   open: boolean
 }
 
-const LoadingLayout: React.FC<LoadingLayoutProps> = ({ open }) => {
+const LoadingLayout: FC<LoadingLayoutProps> = ({ open }) => {
   return (
     <BasicLayout>
       <Loading open={open} />

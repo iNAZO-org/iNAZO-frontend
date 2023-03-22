@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { Star } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
@@ -13,13 +13,16 @@ type BookmarkButtonProps = {
 } & BaseProps
 
 /* 1,2,3,4,5 ... ,100 の形式で保存する */
-const BookmarkButton = ({ gradeDistributionId, sx }: BookmarkButtonProps) => {
+const BookmarkButton: FC<BookmarkButtonProps> = ({
+  gradeDistributionId,
+  sx,
+}) => {
   const [isBookmarked, setIsBookmarked] = useState(false)
 
   useEffect(() => {
     const bookmarkList = getBookmarkListFromLocalStorage()
     setIsBookmarked(bookmarkList.includes(gradeDistributionId))
-  })
+  }, [gradeDistributionId])
 
   const handleBookmarkClick = () => {
     let bookmarkList = getBookmarkListFromLocalStorage()

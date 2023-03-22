@@ -1,9 +1,15 @@
+import { FC } from 'react'
+
 import { Article, GitHub, Twitter } from '@mui/icons-material'
 import { Box, IconButton, Typography } from '@mui/material'
 
-const Footer = () => {
+import { BaseProps } from '@/types'
+
+type FooterProps = BaseProps
+
+const Footer: FC<FooterProps> = ({ sx }) => {
   return (
-    <footer style={{ position: 'sticky', top: '100vh' }}>
+    <Box component="footer" sx={sx}>
       <Box sx={{ backgroundColor: 'primary.main', py: '1.5rem' }}>
         <Box
           sx={{
@@ -45,7 +51,7 @@ const Footer = () => {
           2022 - iNAZO
         </Typography>
       </Box>
-    </footer>
+    </Box>
   )
 }
 

@@ -5,13 +5,9 @@ import Link from 'next/link'
 
 import BookmarkButton from '@/components/atoms/BookmarkButton'
 import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
-import {
-  BaseProps,
-  GradeDistribution,
-  GradeDistributionGraphData,
-} from '@/types'
-
-import TwitterShareButton from '../atoms/TwitterShareButton'
+import TwitterShareButton from '@/components/atoms/TwitterShareButton'
+import { BaseProps, GradeDistributionGraphData } from '@/types'
+import { GradeDistribution } from '@/types/schema'
 
 type GradeDistributionCardProps = BaseProps & {
   gradeDistribution: GradeDistribution
@@ -19,6 +15,7 @@ type GradeDistributionCardProps = BaseProps & {
 
 const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
   gradeDistribution,
+  sx,
 }) => {
   const gradeDistributionGraphData: GradeDistributionGraphData = {
     apCount: gradeDistribution.apCount,
@@ -35,7 +32,7 @@ const GradeDistributionCard: FC<GradeDistributionCardProps> = ({
   }
 
   return (
-    <Card elevation={2}>
+    <Card elevation={2} sx={sx}>
       <CardContent>
         <Typography variant="h5" fontWeight="bold" sx={{ mb: '0.5rem' }}>
           <Link href={`/detail/${gradeDistribution.id}`}>

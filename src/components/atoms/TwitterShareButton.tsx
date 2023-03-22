@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { Twitter } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 
@@ -8,10 +10,10 @@ type TwitterShareButtonProps = {
   gradeDistributionId: number
 } & BaseProps
 
-const TwitterShareButton = ({
+const TwitterShareButton: FC<TwitterShareButtonProps> = ({
   gradeDistributionId,
   sx,
-}: TwitterShareButtonProps) => {
+}) => {
   const content = '成績分布検索サービス - iNAZO'
   const hashtags = '%23iNAZO'
   const detailURL = `${BASE_URL}/detail/${gradeDistributionId}`

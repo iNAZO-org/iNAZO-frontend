@@ -13,7 +13,7 @@ import { useSearchGradeDistribution } from '@/utils/api'
 import { getBookmarkListFromLocalStorage } from '@/utils/common'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
 
-const Search = () => {
+const Bookmark = () => {
   const router = useRouter()
 
   const pageQuery = router.query.page
@@ -48,7 +48,7 @@ const Search = () => {
 
       setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
     }
-  }, [pageQuery, sortValueQuery, searchQuery])
+  }, [pageQuery, sortValueQuery, searchQuery, router.isReady])
 
   const handlePaginationOnChange = useCallback(
     (nextPage: number) => {
@@ -141,4 +141,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default Bookmark

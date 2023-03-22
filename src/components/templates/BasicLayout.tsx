@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { Container } from '@mui/material'
 
 import { BaseProps } from '@/types'
@@ -10,7 +12,7 @@ type BasicLayoutProps = BaseProps & {
   children: React.ReactNode
 }
 
-const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
+const BasicLayout: FC<BasicLayoutProps> = ({ children }) => {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Header />

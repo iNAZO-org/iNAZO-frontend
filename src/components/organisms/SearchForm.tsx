@@ -11,22 +11,25 @@ import {
   FormControl,
 } from '@mui/material'
 
+import { BaseProps } from '@/types'
+
 type SearchFormProps = {
   selectSortValue: string
   onEnter?: (searchInput: string) => void
   onSelectSortChange?: (selectSortValue: string) => void
-}
+} & BaseProps
 
 const SearchForm: FC<SearchFormProps> = ({
   selectSortValue,
   onEnter,
   onSelectSortChange,
+  sx,
 }) => {
   const [composing, setComposition] = useState(false)
   const [searchInput, setSearchInput] = useState('')
 
   return (
-    <Grid container sx={{ my: { xs: '1rem', sm: '3rem' } }} rowGap={2}>
+    <Grid container sx={{ my: { xs: '1rem', sm: '3rem' }, ...sx }} rowGap={2}>
       <Grid item xs={12} sm={6} md={4}>
         <TextField
           label="講義を検索する"

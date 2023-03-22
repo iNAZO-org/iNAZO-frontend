@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { Star, Home } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import {
@@ -14,16 +16,18 @@ import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { BaseProps } from '@/types'
+
 type DrawerRightProps = {
   open: boolean
   toggleDrawer: (
     open: boolean,
   ) => (event: React.KeyboardEvent | React.MouseEvent) => void
-}
+} & BaseProps
 
 const drawerWidth = 240
 
-export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
+const DrawerRight: FC<DrawerRightProps> = ({ open, toggleDrawer, sx }) => {
   return (
     <Drawer
       sx={{
@@ -32,6 +36,7 @@ export default function DrawerRight({ open, toggleDrawer }: DrawerRightProps) {
         '& .MuiDrawer-paper': {
           width: drawerWidth,
         },
+        ...sx,
       }}
       variant="persistent"
       anchor="right"
@@ -133,3 +138,5 @@ const StyledListItemText = styled(ListItemText)({
 const StyledLink = styled(Link)({
   textDecoration: 'none',
 })
+
+export default DrawerRight

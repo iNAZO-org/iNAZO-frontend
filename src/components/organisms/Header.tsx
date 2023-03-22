@@ -14,7 +14,7 @@ import { BaseProps } from '@/types'
 
 type HeaderProps = BaseProps
 
-const Header: FC<HeaderProps> = () => {
+const Header: FC<HeaderProps> = ({ sx }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
@@ -34,7 +34,7 @@ const Header: FC<HeaderProps> = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" sx={sx}>
         <Toolbar>
           <Box
             sx={{

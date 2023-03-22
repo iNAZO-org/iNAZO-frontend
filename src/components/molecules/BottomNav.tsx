@@ -28,7 +28,7 @@ const BottomNav: FC<BottomNavProps> = ({ sx }) => {
         setBottomNavValue(BOOKMARK_BOTTOMNAV_VALUE)
       }
     }
-  }, [router.isReady])
+  }, [router.isReady, router.pathname])
 
   const handleOnChange = async (
     _: SyntheticEvent<Element, Event>,
