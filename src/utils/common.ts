@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE_BOOKMARK_KEY } from './settings'
 
-export const uniqueArray = <T extends any[]>(arr: T): T[] => {
+export const uniqueArray = <T>(arr: T[]): T[] => {
   return Array.from(new Set(arr))
 }
 
@@ -13,5 +13,5 @@ export const getBookmarkListFromLocalStorage = () => {
 }
 
 export const unreachable = (v: never) => {
-  throw new Error('到達するべきではない箇所が実行されました')
+  throw new Error('到達するべきではない箇所が実行されました', v)
 }
