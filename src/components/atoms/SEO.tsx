@@ -8,9 +8,10 @@ type SEOProps = {
 }
 
 const SEO: FC<SEOProps> = ({ title, children }) => {
+  const fullTitle = `${title} | 成績分布検索サービス iNAZO`
   return (
     <Head>
-      <title>{title} | 成績分布検索サービス iNAZO</title>
+      <title>{fullTitle}</title>
       {children}
     </Head>
   )

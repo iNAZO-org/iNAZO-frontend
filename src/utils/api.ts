@@ -7,21 +7,16 @@ import {
   apiSearchGradeDistribution,
 } from '@/types/schema'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
-import { API_BASE_URL } from '@/utils/settings'
+import { API_BASE_URL, API_ENDPOINTS, ApiEndpoints } from '@/utils/settings'
 
 import { unreachable } from './common'
 
-const endpoints = {
-  search: '/api/grade_distribution',
-} as const
-
-type Endpoints = typeof endpoints
-type FetcherParams = [
-  Endpoints[keyof Endpoints],
+export type FetcherParams = [
+  ApiEndpoints[keyof ApiEndpoints],
   { [key: string]: string | number },
 ]
 
-const fetcher = async ([endpoint, query]: FetcherParams) => {
+export const fetcher = async ([endpoint, query]: FetcherParams) => {
   const response = await axios.get(`${API_BASE_URL}${endpoint}`, {
     params: query,
   })
@@ -29,7 +24,7 @@ const fetcher = async ([endpoint, query]: FetcherParams) => {
 
   // APIレスポンスの型を検証する(TODO: any型を使わない)
   switch (endpoint) {
-    case endpoints.search:
+    case API_ENDPOINTS.search:
       apiSearchGradeDistribution.parse(data)
       break
     default:
@@ -42,14 +37,16 @@ const fetcher = async ([endpoint, query]: FetcherParams) => {
 export const useSearchGradeDistribution = (
   query: SearchGradeDistributionQuery,
   isReady: boolean,
+  fallbackData?: APISearchGradeDistribution,
 ) => {
-  const endPoint = endpoints.search
+  const endPoint = API_ENDPOINTS.search
   // 0、空白の場合はクエリから除外する
   const removedQuery = removeOptionalKeyOfSearchQuery(query)
 
   const { data, error, isLoading } = useSWR<APISearchGradeDistribution, Error>(
     isReady ? [endPoint, removedQuery] : null,
     fetcher,
+    { fallbackData },
   )
 
   return {

@@ -1,15 +1,33 @@
 import { useEffect, useState } from 'react'
 
 import { Grid, Alert, Typography } from '@mui/material'
+import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 import SEO from '@/components/atoms/SEO'
 import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
-import { useSearchGradeDistribution } from '@/utils/api'
+import { APISearchGradeDistribution } from '@/types/schema'
+import { fetcher, useSearchGradeDistribution } from '@/utils/api'
+import { API_ENDPOINTS } from '@/utils/settings'
 
-const DetailPage = () => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const fallbackData = (await fetcher([
+    API_ENDPOINTS.search,
+    {
+      ids: String(query.id || ''),
+    },
+  ])) as APISearchGradeDistribution
+
+  return { props: { fallbackData } }
+}
+
+type DetailPageProps = {
+  fallbackData: APISearchGradeDistribution
+}
+
+const DetailPage: NextPage<DetailPageProps> = ({ fallbackData }) => {
   const router = useRouter()
 
   const [gradeId, setGradeId] = useState('')
@@ -21,6 +39,7 @@ const DetailPage = () => {
         ids: gradeId,
       },
       isReadyQuery,
+      fallbackData,
     )
 
   useEffect(() => {
