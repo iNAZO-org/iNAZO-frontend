@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+import Head from 'next/head'
 
 import type { AppProps } from 'next/app'
 import '@fontsource/roboto/300.css'
@@ -31,6 +32,9 @@ const theme = createTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <CssBaseline />
       <Component {...pageProps} />
     </ThemeProvider>

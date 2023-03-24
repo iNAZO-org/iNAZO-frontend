@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { Grid, Alert, Typography } from '@mui/material'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import SEO from '@/components/atoms/SEO'
 import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
@@ -28,7 +28,7 @@ const DetailPage = () => {
       setGradeId(String(router.query.id || ''))
       setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
     }
-  }, [router.isReady])
+  }, [router.isReady, router.query.id])
 
   if (error) throw error
   if (isLoading || !gradeDistributionWithPagination)
@@ -37,12 +37,11 @@ const DetailPage = () => {
     throw new Error('詳細ページで複数の成績が読み込まれました')
 
   const gradeDistribution = gradeDistributionWithPagination.rows[0]
+  const pageTitle = gradeDistribution.subject
 
   return (
     <>
-      <Head>
-        <title>成績詳細ページ</title>
-      </Head>
+      <SEO title={pageTitle} />
       <BasicLayout>
         <Alert severity="info">
           <Typography component="span" fontWeight="600">

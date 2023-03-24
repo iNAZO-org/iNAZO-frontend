@@ -1,7 +1,4 @@
-import * as React from 'react'
-
-import Head from 'next/head'
-
+import SEO from '@/components/atoms/SEO'
 import DescribeiNAZO from '@/components/organisms/top/DescribeiNAZO'
 import FeatureiNAZO from '@/components/organisms/top/FeatureiNAZO'
 import Links from '@/components/organisms/top/Links'
@@ -11,9 +8,7 @@ import BasicLayout from '@/components/templates/BasicLayout'
 const Home = () => {
   return (
     <>
-      <Head>
-        <title>ホームページ</title>
-      </Head>
+      <SEO title="ホームページ" />
       <BasicLayout>
         <DescribeiNAZO sx={{ my: '5rem' }} />
         <FeatureiNAZO sx={{ my: '5rem' }} />

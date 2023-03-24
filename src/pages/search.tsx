@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { Grid, Alert, Typography } from '@mui/material'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Pagination from '@/components/atoms/Pagination'
+import SEO from '@/components/atoms/SEO'
 import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
 import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
@@ -24,6 +24,8 @@ const Search = () => {
   const [search, setSearch] = useState('')
   const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
 
+  const pageTitle = `${search && search + ' - '}成績検索`
+
   const { gradeDistributionWithPagination, isLoading, error } =
     useSearchGradeDistribution(
       {
@@ -41,7 +43,7 @@ const Search = () => {
       setSearch(String(searchQuery || ''))
       setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
     }
-  }, [pageQuery, sortValueQuery, searchQuery])
+  }, [pageQuery, sortValueQuery, searchQuery, router.isReady])
 
   const handlePaginationOnChange = useCallback(
     (nextPage: number) => {
@@ -63,9 +65,7 @@ const Search = () => {
 
   return (
     <>
-      <Head>
-        <title>成績検索</title>
-      </Head>
+      <SEO title={pageTitle} />
       <BasicLayout>
         <Pagination
           totalRows={gradeDistributionWithPagination.totalRows}

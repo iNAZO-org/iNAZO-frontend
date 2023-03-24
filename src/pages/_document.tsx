@@ -5,7 +5,6 @@ export default function Document() {
     <Html>
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="og:title" content="成績分布検索サービス - iNAZO" />
         <meta name="og:url" content="https://inazo.hu-jagajaga.com/" />

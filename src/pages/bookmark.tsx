@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { Grid, Alert, Typography } from '@mui/material'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Pagination from '@/components/atoms/Pagination'
+import SEO from '@/components/atoms/SEO'
 import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
 import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
@@ -70,9 +70,7 @@ const Bookmark = () => {
 
   return (
     <>
-      <Head>
-        <title>BookMark</title>
-      </Head>
+      <SEO title="ブックマーク一覧" />
       <BasicLayout>
         <Pagination
           totalRows={gradeDistributionWithPagination.totalRows}
