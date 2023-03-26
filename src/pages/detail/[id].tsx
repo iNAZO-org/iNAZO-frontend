@@ -33,9 +33,11 @@ const DetailPage: NextPage<DetailPageProps> = ({ fallbackData }) => {
 
   const { gradeDistributionWithPagination, error } = useSearchGradeDistribution(
     {
-      ids: queryId,
+      query: {
+        ids: queryId,
+      },
+      fallbackData,
     },
-    fallbackData,
   )
 
   if (error) throw error

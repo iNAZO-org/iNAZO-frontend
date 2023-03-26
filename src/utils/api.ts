@@ -34,16 +34,23 @@ export const fetcher = async ([endpoint, query]: FetcherParams) => {
   return data
 }
 
-export const useSearchGradeDistribution = (
-  query: SearchGradeDistributionQuery,
-  fallbackData?: APISearchGradeDistribution,
-) => {
+type UseSearchGradeDistribution = {
+  query: SearchGradeDistributionQuery
+  fallbackData?: APISearchGradeDistribution
+  isReady?: boolean
+}
+
+export const useSearchGradeDistribution = ({
+  query,
+  fallbackData,
+  isReady = true,
+}: UseSearchGradeDistribution) => {
   const endPoint = API_ENDPOINTS.search
   // 0、空白の場合はクエリから除外する
   const removedQuery = removeOptionalKeyOfSearchQuery(query)
 
   const { data, error, isLoading } = useSWR<APISearchGradeDistribution, Error>(
-    [endPoint, removedQuery],
+    isReady ? [endPoint, removedQuery] : null,
     fetcher,
     { fallbackData },
   )

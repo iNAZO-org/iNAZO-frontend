@@ -48,11 +48,13 @@ const SearchPage: NextPage<SearchPageProps> = ({ fallbackData }) => {
 
   const { gradeDistributionWithPagination, error } = useSearchGradeDistribution(
     {
-      page: pageQuery,
-      sort: sortValueQuery,
-      search: searchQuery,
+      query: {
+        page: pageQuery,
+        sort: sortValueQuery,
+        search: searchQuery,
+      },
+      fallbackData,
     },
-    fallbackData,
   )
 
   const handlePaginationOnChange = useCallback(

@@ -13,7 +13,11 @@ import { useSearchGradeDistribution } from '@/utils/api'
 import { getBookmarkListFromLocalStorage } from '@/utils/common'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
 
-const Bookmark = () => {
+/*
+  ブックマークページはお気に入りの成績IDをフロントエンド側に保存しているのでSSRしない
+*/
+
+const BookmarkPage = () => {
   const router = useRouter()
 
   const pageQuery = router.query.page
@@ -27,15 +31,15 @@ const Bookmark = () => {
   const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
 
   const { gradeDistributionWithPagination, isLoading, error } =
-    useSearchGradeDistribution(
-      {
+    useSearchGradeDistribution({
+      query: {
         page: page,
         sort: selectSortValue,
         search: search,
         ids: gradeIds.join(','),
       },
-      isReadyQuery,
-    )
+      isReady: isReadyQuery,
+    })
 
   useEffect(() => {
     if (router.isReady) {
@@ -64,6 +68,34 @@ const Bookmark = () => {
     [router, selectSortValue, search],
   )
 
+  const handleEnter = useCallback(
+    (searchInput: string) => {
+      router.push({
+        pathname: '/bookmark',
+        query: removeOptionalKeyOfSearchQuery({
+          page: 1,
+          sort: selectSortValue,
+          search: searchInput,
+        }),
+      })
+    },
+    [router, selectSortValue],
+  )
+
+  const handleSelectSortChange = useCallback(
+    (selectSort: string) => {
+      router.push({
+        pathname: '/bookmark',
+        query: removeOptionalKeyOfSearchQuery({
+          page: 1,
+          sort: selectSort,
+          search: search,
+        }),
+      })
+    },
+    [router, search],
+  )
+
   if (error) throw error
   if (isLoading || !gradeDistributionWithPagination)
     return <LoadingLayout open />
@@ -87,26 +119,8 @@ const Bookmark = () => {
 
         <SearchForm
           selectSortValue={selectSortValue}
-          onEnter={(searchInput) => {
-            router.push({
-              pathname: '/bookmark',
-              query: removeOptionalKeyOfSearchQuery({
-                page: 1,
-                sort: selectSortValue,
-                search: searchInput,
-              }),
-            })
-          }}
-          onSelectSortChange={(selectSort) => {
-            router.push({
-              pathname: '/bookmark',
-              query: removeOptionalKeyOfSearchQuery({
-                page: 1,
-                sort: selectSort,
-                search: search,
-              }),
-            })
-          }}
+          onEnter={handleEnter}
+          onSelectSortChange={handleSelectSortChange}
         />
 
         <Grid
@@ -139,4 +153,4 @@ const Bookmark = () => {
   )
 }
 
-export default Bookmark
+export default BookmarkPage
