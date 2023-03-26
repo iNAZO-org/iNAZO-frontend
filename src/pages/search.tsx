@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 
 import { Grid, Alert, Typography } from '@mui/material'
+import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 import Pagination from '@/components/atoms/Pagination'
@@ -9,41 +10,50 @@ import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
 import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
-import { useSearchGradeDistribution } from '@/utils/api'
+import { APISearchGradeDistribution } from '@/types/schema'
+import { fetcher, useSearchGradeDistribution } from '@/utils/api'
 import { removeOptionalKeyOfSearchQuery } from '@/utils/query'
+import { API_ENDPOINTS } from '@/utils/settings'
 
-const Search = () => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const pageQuery = Number(query.page || '1')
+  const sortValueQuery = String(query.sort || 'latest')
+  const searchQuery = String(query.search || '')
+  const requiredQuery = removeOptionalKeyOfSearchQuery({
+    page: pageQuery,
+    sort: sortValueQuery,
+    search: searchQuery,
+  })
+  // TODO: fetcher内でzodを使用してバリデーションをしているが、適切な型定義に修正
+  const fallbackData = (await fetcher([
+    API_ENDPOINTS.search,
+    requiredQuery,
+  ])) as APISearchGradeDistribution
+
+  return { props: { fallbackData } }
+}
+
+type SearchPageProps = {
+  fallbackData: APISearchGradeDistribution
+}
+
+const SearchPage: NextPage<SearchPageProps> = ({ fallbackData }) => {
   const router = useRouter()
 
-  const pageQuery = router.query.page
-  const sortValueQuery = router.query.sort
-  const searchQuery = router.query.search
+  const pageQuery = Number(router.query.page || '1')
+  const sortValueQuery = String(router.query.sort || 'latest')
+  const searchQuery = String(router.query.search || '')
 
-  const [page, setPage] = useState(0)
-  const [selectSortValue, setSelectSortValue] = useState('')
-  const [search, setSearch] = useState('')
-  const [isReadyQuery, setIsReadyQuery] = useState(false) // stateの初期値による２重リクエストを防止するため
+  const pageTitle = `${searchQuery && searchQuery + ' - '}成績検索`
 
-  const pageTitle = `${search && search + ' - '}成績検索`
-
-  const { gradeDistributionWithPagination, isLoading, error } =
-    useSearchGradeDistribution(
-      {
-        page: page,
-        sort: selectSortValue,
-        search: search,
-      },
-      isReadyQuery,
-    )
-
-  useEffect(() => {
-    if (router.isReady) {
-      setPage(Number(pageQuery || '1'))
-      setSelectSortValue(String(sortValueQuery || 'latest'))
-      setSearch(String(searchQuery || ''))
-      setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
-    }
-  }, [pageQuery, sortValueQuery, searchQuery, router.isReady])
+  const { gradeDistributionWithPagination, error } = useSearchGradeDistribution(
+    {
+      page: pageQuery,
+      sort: sortValueQuery,
+      search: searchQuery,
+    },
+    fallbackData,
+  )
 
   const handlePaginationOnChange = useCallback(
     (nextPage: number) => {
@@ -51,17 +61,44 @@ const Search = () => {
         pathname: '/search',
         query: removeOptionalKeyOfSearchQuery({
           page: nextPage,
-          sort: selectSortValue,
-          search: search,
+          sort: sortValueQuery,
+          search: searchQuery,
         }),
       })
     },
-    [router, selectSortValue, search],
+    [router, sortValueQuery, searchQuery],
+  )
+
+  const handleEnter = useCallback(
+    (searchInput: string) => {
+      router.push({
+        pathname: '/search',
+        query: removeOptionalKeyOfSearchQuery({
+          page: 1,
+          sort: sortValueQuery,
+          search: searchInput,
+        }),
+      })
+    },
+    [router, sortValueQuery],
+  )
+
+  const handleSelectSortChange = useCallback(
+    (selectSort: string) => {
+      router.push({
+        pathname: '/search',
+        query: removeOptionalKeyOfSearchQuery({
+          page: 1,
+          sort: selectSort,
+          search: searchQuery,
+        }),
+      })
+    },
+    [router, searchQuery],
   )
 
   if (error) throw error
-  if (isLoading || !gradeDistributionWithPagination)
-    return <LoadingLayout open />
+  if (!gradeDistributionWithPagination) return <LoadingLayout open />
 
   return (
     <>
@@ -70,41 +107,23 @@ const Search = () => {
         <Pagination
           totalRows={gradeDistributionWithPagination.totalRows}
           count={gradeDistributionWithPagination.totalPages}
-          page={page}
+          page={pageQuery}
           onChange={handlePaginationOnChange}
         />
 
-        {search && (
+        {searchQuery && (
           <Alert severity="info">
             <Typography component="span" fontWeight="600">
               検索結果：
             </Typography>
-            <Typography component="span">{search}</Typography>
+            <Typography component="span">{searchQuery}</Typography>
           </Alert>
         )}
 
         <SearchForm
-          selectSortValue={selectSortValue}
-          onEnter={(searchInput) => {
-            router.push({
-              pathname: '/search',
-              query: removeOptionalKeyOfSearchQuery({
-                page: 1,
-                sort: selectSortValue,
-                search: searchInput,
-              }),
-            })
-          }}
-          onSelectSortChange={(selectSort) => {
-            router.push({
-              pathname: '/search',
-              query: removeOptionalKeyOfSearchQuery({
-                page: 1,
-                sort: selectSort,
-                search: search,
-              }),
-            })
-          }}
+          selectSortValue={sortValueQuery}
+          onEnter={handleEnter}
+          onSelectSortChange={handleSelectSortChange}
         />
 
         <Grid
@@ -129,7 +148,7 @@ const Search = () => {
         <Pagination
           totalRows={gradeDistributionWithPagination.totalRows}
           count={gradeDistributionWithPagination.totalPages}
-          page={page}
+          page={pageQuery}
           onChange={handlePaginationOnChange}
         />
       </BasicLayout>
@@ -137,4 +156,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchPage
