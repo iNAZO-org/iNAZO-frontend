@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 
-import { Grid, Alert, Typography } from '@mui/material'
+import { Alert, Typography } from '@mui/material'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 import Pagination from '@/components/atoms/Pagination'
 import SEO from '@/components/atoms/SEO'
-import GradeDistributionCard from '@/components/molecules/GradeDistributionCard'
+import GradeDistributionList from '@/components/organisms/GradeDistributionList'
 import SearchForm from '@/components/organisms/SearchForm'
 import BasicLayout from '@/components/templates/BasicLayout'
 import LoadingLayout from '@/components/templates/LoadingLayout'
@@ -128,24 +128,17 @@ const SearchPage: NextPage<SearchPageProps> = ({ fallbackData }) => {
           onSelectSortChange={handleSelectSortChange}
         />
 
-        <Grid
-          container
-          spacing={4}
-          sx={{
-            my: {
-              xs: '1rem',
-              sm: '4rem',
-            },
-          }}
-        >
-          {gradeDistributionWithPagination.rows?.map((gradeData) => {
-            return (
-              <Grid key={gradeData.id} item xs={12} md={6}>
-                <GradeDistributionCard gradeDistribution={gradeData} />
-              </Grid>
-            )
-          })}
-        </Grid>
+        {gradeDistributionWithPagination.rows && (
+          <GradeDistributionList
+            gradeDistributionList={gradeDistributionWithPagination.rows}
+            sx={{
+              my: {
+                xs: '1rem',
+                sm: '4rem',
+              },
+            }}
+          />
+        )}
 
         <Pagination
           totalRows={gradeDistributionWithPagination.totalRows}
