@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { Grid, Alert, Typography } from '@mui/material'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -13,10 +11,12 @@ import { fetcher, useSearchGradeDistribution } from '@/utils/api'
 import { API_ENDPOINTS } from '@/utils/settings'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const queryId = String(query.id || '')
+  // TODO: fetcher内でzodを使用してバリデーションをしているが、適切な型定義に修正
   const fallbackData = (await fetcher([
     API_ENDPOINTS.search,
     {
-      ids: String(query.id || ''),
+      ids: queryId,
     },
   ])) as APISearchGradeDistribution
 
@@ -29,29 +29,17 @@ type DetailPageProps = {
 
 const DetailPage: NextPage<DetailPageProps> = ({ fallbackData }) => {
   const router = useRouter()
+  const queryId = String(router.query.id || '')
 
-  const [gradeId, setGradeId] = useState('')
-  const [isReadyQuery, setIsReadyQuery] = useState(false)
-
-  const { gradeDistributionWithPagination, isLoading, error } =
-    useSearchGradeDistribution(
-      {
-        ids: gradeId,
-      },
-      isReadyQuery,
-      fallbackData,
-    )
-
-  useEffect(() => {
-    if (router.isReady) {
-      setGradeId(String(router.query.id || ''))
-      setIsReadyQuery(true) // ２重リクエストを防止するため、クエリがstateで管理されたタイミングでリクエストを開始する。
-    }
-  }, [router.isReady, router.query.id])
+  const { gradeDistributionWithPagination, error } = useSearchGradeDistribution(
+    {
+      ids: queryId,
+    },
+    fallbackData,
+  )
 
   if (error) throw error
-  if (isLoading || !gradeDistributionWithPagination)
-    return <LoadingLayout open />
+  if (!gradeDistributionWithPagination) return <LoadingLayout open />
   if (gradeDistributionWithPagination.rows?.length !== 1)
     throw new Error('詳細ページで複数の成績が読み込まれました')
 
