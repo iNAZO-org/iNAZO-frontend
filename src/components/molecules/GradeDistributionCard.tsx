@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
 import { Box, Card, CardContent, Typography } from '@mui/material'
-import Link from 'next/link'
 
 import BookmarkButton from '@/components/atoms/BookmarkButton'
 import GradeDistributionGraph from '@/components/atoms/GradeDistributionGraph'
+import Link from '@/components/atoms/Link'
 import TwitterShareButton from '@/components/atoms/TwitterShareButton'
 import { BaseProps, GradeDistributionGraphData } from '@/types'
 import { GradeDistribution } from '@/types/schema'
